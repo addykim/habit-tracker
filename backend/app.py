@@ -1,9 +1,9 @@
 from bottle import route, run, template
 
 @route('/')
-def index():
+def indexpage():
     print('Hello')
-    return template('hey')
+    return template('<b>hey Listen</b', )
 
 @route('/hello/<name>')
 def index(name):
