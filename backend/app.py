@@ -1,12 +1,8 @@
-from bottle import route, run, template
+from bottle import route, run, template, view
 
 @route('/')
-def indexpage():
-    print('Hello')
-    return template('<b>hey Listen</b', )
-
-@route('/hello/<name>')
-def index(name):
-    return template('<b>Hello {{name}}</b>!', name=name)
+@view('hello.html')
+def index():
+    return dict()
 
 run(host='localhost', port=8080)
