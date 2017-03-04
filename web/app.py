@@ -1,21 +1,10 @@
-from bottle import error, get, post, request, route, run, static_file, template, view
+from bottle import abort, error, get, post, request, route, run, static_file, template, view
 
 ########## User Facing Routes ##########
 @route('/')
-@view('hello.html')
+@view('index.html')
 def index():
     return dict()
-
-# Refactor this to a template
-@get('/login') # or @route('/login')
-def login():
-    return '''
-        <form action="/login" method="post">
-            Username: <input name="username" type="text" />
-            Password: <input name="password" type="password" />
-            <input value="Login" type="submit" />
-        </form>
-    '''
 
 @post('/login') # or @route('/login', method='POST')
 def do_login():
@@ -39,9 +28,12 @@ def check_login(username=None, password=None):
 def server_static(filename):
     return static_file(filename, root='./static')
 
-# TODO use the fancy template
+@route('/restricted')
+def restricted():
+    abort(401, "Sorry, access denied.")
+
 @error(404)
 def error404(error):
-    return 'Nothing here, sorry'
+    return template('404.html',)
 
-run(host='localhost', port=8080)
+run(host='localhost', port=8080, reloader=True)
