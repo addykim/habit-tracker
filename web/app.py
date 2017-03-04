@@ -10,6 +10,7 @@ def index():
 def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
+    # TODO Return something else than just string
     if check_login(username, password):
         return "<p>Your login information was correct.</p>"
     else:
