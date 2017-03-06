@@ -23,6 +23,30 @@ def check_login(username=None, password=None):
             return True
     return False
 
+########## API ##########
+@get('/habit/<habitid>')
+def get_habit(habitid):
+    return {"habitid": habitid, "name": "Programming": "userid": 3, "streak": 3}
+
+@get('/user/<userid>')
+def get_user(userid):
+    return {"userid": userid, "name": "Jane Kim"}
+
+@post('/habit')
+def create_habit():
+    name = requests.forms.get('name')
+
+@post('/user')
+def create_user():
+    name = requests.form.get('name')
+    email = requests.form.get('email')
+
+# @put('/habit')
+# def update_habit():
+
+# @put('/user/<userid>')
+# def update_user():
+
 ########## Interally Used Routes ##########
 
 @route('/static/<filename>')
