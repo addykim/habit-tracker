@@ -1,0 +1,16 @@
+web:
+  container-name: web
+  image: digitallyseamless/bottle
+  command: python3 app.py --reload
+  link:
+    - db
+  port:
+    - 8080:8080
+  environment:
+    - MYSQL_ROOT_PASSWORD=password
+
+db:
+  container-name: db
+  image: mysql
+  environment:
+    - MYSQL_ROOT_PASSWORD=password

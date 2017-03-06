@@ -10,7 +10,9 @@ pip3 install -r requirements.txt
 
 ## Run
 ```
-python3 app.py
+python3 app.py --reload
+# or
+docker-compose up -d
 ```
 
 Site will be available on localhost:8080
