@@ -1,7 +1,18 @@
 from bottle import abort, error, get, post, put, request, route, run, static_file, template, view
 
-TEMP_HABIT = {"habitid": 1, "name": "Programming", "userid": 3, "streak": 3}
-TEMP_USER = {"userid": 1, "name": "Jane Kim"} 
+TEMP_HABIT = {
+    "habitid": 1, 
+    "name": "Programming", 
+    "startdate": "2017-05-03",
+    "userid": 3
+    }
+
+TEMP_USER = {
+    "userid": 1, 
+    "name": 
+    "Jane Kim", 
+    "email": "jane@gmail.com"
+    } 
 
 ########## User Facing Routes ##########
 @route('/')
@@ -65,6 +76,9 @@ def update_user():
 def server_static(filename):
     return static_file(filename, root='./static')
 
+@route('/dist/<filename>')
+def dist_static(filename):
+    return static_file(filename, root='./dist')
 
 @route('/restricted')
 def restricted():

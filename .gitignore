@@ -1,4 +1,5 @@
 web/dev
+web/dist
 
 # dependencies
 web/node_modules
