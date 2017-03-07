@@ -1,33 +1,15 @@
-% rebase('base.tpl', title='Index')
-<div id="root"></div>
-
-My Account
-<!-- Hide form if logged in -->
-<form action="/login" method="post">
-  Username: <input name="username" type="text" />
-  Password: <input name="password" type="password" />
-  <input value="Login" type="submit" />
-</form>
-Register Account
-<form action="/user/register" method="post">
-  Name: <input name="name" type="text" />
-  Email: <input name="email" type="text" />
-  Password: <input name="password" type="password" />
-  <input value="Register" type="submit" />
-</form>
-
-
-<div>
-  <b>Create a habit</b>
-  <form action="/habit" method="post">
-    I want to do <input name="name" type="text" /> for <input name="goal_streak" type="number"/> of days.
-    <input value="Create" type="submit" />
-  </form>
-</div>
-
-<div id="root"></div>
-
-<!-- Convert away from being a button -->
-<form action="/habit/3" method="post"> 
-  <input value="I did it" type="submit" />
-</form>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title or 'No title'}}</title>
+  </head>
+  <body>
+    <div id="content"></div>
+    <div id="footer">
+      &copy; Copyright 2008 
+    </div>
+    <script src="http://localhost:8081/dist/bundle.js" charset="utf-8"/>
+  </body>
+</html>

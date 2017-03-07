@@ -18,7 +18,7 @@ TEMP_USER = {
 @route('/')
 @view('index.html')
 def index():
-    return dict()
+    return {'title':'Index'}
 
 ########## Utility Functions ##########
 # TODO remove hardcoded login answer
