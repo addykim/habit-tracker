@@ -10,7 +10,14 @@ const config = {
   },
   module: {
     rules: [
-      {test: /\.(js|jsx)$/, use: 'babel-loader'}
+      {test: /\.(js|jsx)$/, use: 'babel-loader'},
+      {test: /\.less$/,
+        use: [
+          'style-loader',
+          { loader: 'css-loader', options: { importLoaders: 1 } },
+          'less-loader'
+        ]
+      }
     ],
     loaders: [
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
@@ -19,7 +26,7 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'views/index.html'
