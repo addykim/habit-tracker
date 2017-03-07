@@ -1,11 +1,24 @@
 {
   "name": "habit-tracker",
-  "version": "1.0.0",
-  "description": "establish habits by doing them daily",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=4"
   },
-  "author": "Addy Kim",
-  "license": "ISC"
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+  },
+  "scripts": {
+    "start": "",
+    "build": ""
+  },
+  "maintainers": [
+    {
+      "name": "Addy Kim",
+      "email": "addysgkim@gmail.com"
+    }
+  ],
 }

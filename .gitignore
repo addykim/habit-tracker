@@ -1,1 +1,17 @@
 web/dev
+
+# dependencies
+web/node_modules
+
+# testing
+web/coverage
+
+# production
+web/build
+
+# misc
+.DS_Store
+.env
+web/npm-debug.log*
+web/yarn-debug.log*
+web/yarn-error.log*
