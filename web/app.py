@@ -1,4 +1,7 @@
-from bottle import abort, error, get, post, request, route, run, static_file, template, view
+from bottle import abort, error, get, post, put, request, route, run, static_file, template, view
+
+TEMP_HABIT = {"habitid": 1, "name": "Programming", "userid": 3, "streak": 3}
+TEMP_USER = {"userid": 1, "name": "Jane Kim"} 
 
 ########## User Facing Routes ##########
 @route('/')
@@ -17,11 +20,11 @@ def check_login(username=None, password=None):
 ########## API ##########
 @get('/habit/<habitid>')
 def get_habit(habitid):
-    return {"habitid": habitid, "name": "Programming", "userid": 3, "streak": 3}
+    return TEMP_HABIT
 
 @get('/user/<userid>')
 def get_user(userid):
-    return {"userid": userid, "name": "Jane Kim"}
+    return TEMP_USER
 
 @post('/habit')
 def create_habit():
@@ -32,14 +35,10 @@ def create_habit():
     habit_started = "today"
     print('created habit')
 
-@post('/habit/<habitid>')
-def updated_habit(habitid):
-    print('updated habit streak count')
-
 @post('/user/register')
 def register_user():
-    name = requests.form.get('name')
-    email = requests.form.get('email')
+    name = request.form.get('name')
+    email = request.form.get('email')
 
 @post('/login')
 def login_user():
@@ -52,12 +51,14 @@ def login_user():
     else:
         return "<p>Login failed.</p>"
 
-# @put('/habit')
-# def update_habit():
+@put('/habit/<habitid>')
+def update_habit(habitid):
+    print('updated habit streak count')
 
-# @put('/user/<userid>')
-# def update_user():
-    # print('updated user')
+@put('/user/<userid>')
+def update_user():
+    print('updated user')
+
 ########## Interally Used Routes ##########
 
 @route('/static/<filename>')
