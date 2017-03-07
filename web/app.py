@@ -32,6 +32,10 @@ def create_habit():
     habit_started = "today"
     print('created habit')
 
+@post('/habit/<habitid>')
+def updated_habit(habitid):
+    print('updated habit streak count')
+
 @post('/user/register')
 def register_user():
     name = requests.form.get('name')
@@ -48,17 +52,18 @@ def login_user():
     else:
         return "<p>Login failed.</p>"
 
-@put('/habit')
-def update_habit():
+# @put('/habit')
+# def update_habit():
 
-@put('/user/<userid>')
-def update_user():
-
+# @put('/user/<userid>')
+# def update_user():
+    # print('updated user')
 ########## Interally Used Routes ##########
 
 @route('/static/<filename>')
 def server_static(filename):
     return static_file(filename, root='./static')
+
 
 @route('/restricted')
 def restricted():
@@ -67,6 +72,7 @@ def restricted():
         return template("Hello {{name}}. Welcome back.", name=username)
     else:
         return "You are not logged in. Access denied."
+
 
 @error(404)
 def error404(error):
