@@ -1,15 +1,22 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
+import {Grid, Row} from 'react-bootstrap';
 import Habit from './habit';
 import Login from './login';
 
+const gridInstance = (
+  <Grid>
+    <Row>
+      <Login/>
+    </Row>
+    <Row>
+      <Habit/>
+    </Row>
+  </Grid>
+);
+
 class App extends Component {
   render() {
-    return (
-      <div>
-        <Login/>
-        <Habit/>
-      </div>
-    );
+    return gridInstance;
   }
 }
 
