@@ -34,11 +34,11 @@ class StreakView extends Component {
     let squares = [], num = 0;
     while (num++ <= 10) squares.push(num);
     return (
-      <table>
+      <div className="streak-view">
         {squares.map(function (i) {
           return <StreakSquare/>;
         })}
-      </table>
+      </div>
     );
   }
 }
@@ -47,9 +47,9 @@ class StreakSquare extends Component {
   render() {
     let completed = true;
     if (completed) {
-      return (<span className="square">X</span>);
+      return (<span className="square completed">X</span>);
     }
-    return (<span> </span>);
+    return (<span className="square">X</span>);
   }
 }
 

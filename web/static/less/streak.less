@@ -1,10 +1,23 @@
+@streak-margin: 20px;
+
 @square-side-length: 10px;
 
 @square-completed: #BCED91;
 @square-blank: #D3D3D3;
+@square-margin: 5px;
+
+.streak-view {
+  margin: @streak-margin 0 @streak-margin 0;
+}
 
 .square {
   background-color: @square-blank;
   height: @square-side-length;
   width: @square-side-length;
+  margin: @square-margin;
+  padding: @square-margin;
+
+  &.completed {
+    background-color: @square-completed;
+  }
 }
