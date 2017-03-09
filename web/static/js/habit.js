@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import {Button} from 'react-bootstrap';
+import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
+import '../less/streak.less';
+import moment from 'moment';
 
 class Habit extends Component {
   render() {
@@ -24,6 +26,30 @@ class Habit extends Component {
       <StreakView/>
       </div>
     );
+  }
+}
+
+class StreakView extends Component {
+  render() {
+    let squares = [], num = 0;
+    while (num++ <= 10) squares.push(num);
+    return (
+      <table>
+        {squares.map(function (i) {
+          return <StreakSquare/>;
+        })}
+      </table>
+    );
+  }
+}
+
+class StreakSquare extends Component {
+  render() {
+    let completed = true;
+    if (completed) {
+      return (<span className="square">X</span>);
+    }
+    return (<span> </span>);
   }
 }
 

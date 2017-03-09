@@ -6,6 +6,9 @@
 virtualenv --python=python3 dev
 source dev/bin/activate
 pip3 install -r requirements.txt
+
+
+npm install
 ```
 
 ## Run
