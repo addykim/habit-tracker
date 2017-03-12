@@ -37,11 +37,11 @@ class StreakView extends Component {
     };
   }
   render() {
-    let squares = [true, false, true, false, true, false];
+    let squares = [true, false, true, false, true, false, true, true, true, false, false, false, false];
     return (
       <div className="streak-view">
         {squares.map(function (completed, index) {
-          return <StreakSquare className="square" key={index}/>;
+          return <StreakSquare key={index} completed={completed}/>;
         })}
       </div>
     );
@@ -49,10 +49,10 @@ class StreakView extends Component {
 }
 
 class StreakSquare extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      completed: false
+      completed: this.props.completed
     };
   }
   markCompleted() {
