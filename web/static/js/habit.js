@@ -30,13 +30,18 @@ class Habit extends Component {
 }
 
 class StreakView extends Component {
+  constructor() {
+    super();
+    this.state = {
+
+    };
+  }
   render() {
-    let squares = [], num = 0;
-    while (num++ <= 10) squares.push(num);
+    let squares = [true, false, true, false, true, false];
     return (
       <div className="streak-view">
-        {squares.map(function (i) {
-          return <StreakSquare/>;
+        {squares.map(function (completed, index) {
+          return <StreakSquare className="square" key={index}/>;
         })}
       </div>
     );
@@ -44,12 +49,29 @@ class StreakView extends Component {
 }
 
 class StreakSquare extends Component {
-  render() {
-    let completed = true;
-    if (completed) {
-      return (<span className="square completed">X</span>);
+  constructor() {
+    super();
+    this.state = {
+      completed: false
+    };
+  }
+  markCompleted() {
+    this.setState({
+      completed: true
+    });
+  }
+  getClass() {
+    if (this.state.completed) {
+      return "square completed";
     }
-    return (<span className="square">X</span>);
+    return "square";
+  }
+  render() {
+    return (
+      <div>
+        <span className={this.getClass()}>{this.props.index}</span>
+        <button onClick={() => this.markCompleted()}></button>
+      </div>);
   }
 }
 
