@@ -29,9 +29,10 @@ const config = {
       }
     ],
     loaders: [
+      { test: /\.js$/, loader: 'babel', query: { presets: ['es2015','react'], exclude: /node_modules/ } },
       { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.js$/, loader: 'babel', query: { presets: ['es2015','react'], exclude: /node_modules/ } }
+      { test: /\.json$/, loader: 'json' }
     ]
   },
   plugins: [
