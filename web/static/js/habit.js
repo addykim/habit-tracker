@@ -20,7 +20,8 @@ class Habit extends Component {
   // }
   render() {
     return (
-      <div>
+      <div
+          className="center-block">
         <HabitForm/>
         {this.state.habits.map(function(habit) {
           return (<StreakView
@@ -99,15 +100,23 @@ class StreakView extends Component {
     return (
       <div className="streak-view">
         <h3>{this.state.habitName}</h3>
-        {this.state.squares.map(function (square, index) {
-          index++;
-          return (<StreakSquare
-                      key={square.date}
-                      date={square.date}
-                      index={index}
-                      completed={square.completed}/>);
-        })}
-        <Button onClick={this.markTodayCompleted()}>Completed</Button>
+        <div>
+          {this.state.squares.map(function (square, index) {
+            index++;
+            return (<StreakSquare
+                        className="center-block"
+                        key={square.date}
+                        date={square.date}
+                        index={index}
+                        completed={square.completed}/>);
+          })}
+        </div>
+        <div>
+          <Button
+              className="center-block"
+              onClick={this.markTodayCompleted()}>
+              Completed</Button>
+        </div>
       </div>
     );
   }
