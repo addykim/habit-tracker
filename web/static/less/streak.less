@@ -3,21 +3,24 @@
 @square-side-length: 10px;
 
 @square-completed: #BCED91;
+@square-today: #99ccff;
 @square-blank: #D3D3D3;
 @square-margin: 5px;
 
 .streak-view {
-  margin: @streak-margin 0 @streak-margin 0;
+  margin: @streak-margin;
 }
 
 .square {
   background-color: @square-blank;
-  height: @square-side-length;
-  width: @square-side-length;
+  padding: @square-side-length;
   margin: @square-margin;
-  padding: @square-margin;
 
   &.completed {
     background-color: @square-completed;
+  }
+
+  &.today {
+    background-color: @square-today;
   }
 }
