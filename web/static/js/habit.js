@@ -98,7 +98,7 @@ class StreakView extends Component {
   render() {
     let index = -1
     return (
-      <div className="habit-progress">
+      <div className="habit-progress center-text">
         <h3
             className="habit-header">
             {this.state.habitName}</h3>
