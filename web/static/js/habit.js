@@ -7,28 +7,47 @@ import dummysquares from '../data/squares';
 const DATE_FORMAT = "YYYY-MM-D"
 
 class Habit extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
-
+      habits: dummysquares
     };
   }
-  determineStreak(streak) {
-    let now = moment();
+  // determineStreak(streak) {
+    // let now = moment();
     // .weekday();
-    let endDate = moment().add(streak, 'd');
-  }
+    // let endDate = moment().add(streak, 'd');
+  // }
   render() {
-    let habit = dummysquares;
     return (
       <div>
+        <HabitForm/>
+        {this.state.habits.map(function(habit) {
+          return (<StreakView
+            key={habit.id}
+            name={habit.name}
+            streak={habit.streak}
+            startDate={habit.start_date}
+            goalStreak={habit.goal_streak}/>);
+        })}
+      </div>
+    );
+  }
+}
+
+class HabitForm extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
       <Form inline>
         <FormGroup controlId="formInlineName">
           <ControlLabel>I want to do </ControlLabel>
           {' '}
           <FormControl type="text" placeholder="habit" />
         </FormGroup>
-        {' '}
+          {' '}
         <FormGroup controlId="formInlineEmail">
           <ControlLabel>for </ControlLabel>
           {' '}
@@ -36,17 +55,9 @@ class Habit extends Component {
         </FormGroup>
         {' '}
         days
-        <Button
-            type="submit"
-            onClick={this.determineStreak()}>Submit</Button>
+        <Button type="submit">Submit</Button>
       </Form>
-      <StreakView
-          name={habit.name}
-          streak={habit.streak}
-          startDate={habit.start_date}
-          goalStreak={habit.goal_streak}/>
-      </div>
-    );
+      )
   }
 }
 
@@ -60,7 +71,8 @@ class StreakView extends Component {
       startDate: this.props.startDate,
       goalStreak: this.props.goalStreak
     };
-    this.determineStreakView();
+    console.log(this.props);
+    // this.determineStreakView();
   }
   // calculate number of squares to place before
   // TODO hold off on this section until completing today is done
@@ -89,7 +101,11 @@ class StreakView extends Component {
         <h3>{this.state.habitName}</h3>
         {this.state.squares.map(function (square, index) {
           index++;
-          return <StreakSquare key={square.date} date={square.date} index={index} completed={square.completed}/>;
+          return (<StreakSquare
+                      key={square.date}
+                      date={square.date}
+                      index={index}
+                      completed={square.completed}/>);
         })}
         <Button onClick={this.markTodayCompleted()}>Completed</Button>
       </div>
