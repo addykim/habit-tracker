@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 import '../less/streak.less';
 import moment from 'moment';
+import dummysquares from '../data/squares';
+
+const DATE_FORMAT = "YYYY-MM-D"
 
 class Habit extends Component {
   constructor() {
@@ -16,6 +19,7 @@ class Habit extends Component {
     let endDate = moment().add(streak, 'd');
   }
   render() {
+    let habit = dummysquares;
     return (
       <div>
       <Form inline>
@@ -32,9 +36,15 @@ class Habit extends Component {
         </FormGroup>
         {' '}
         days
-        <Button type="submit" onClick={this.determineStreak()}>Submit</Button>
+        <Button
+            type="submit"
+            onClick={this.determineStreak()}>Submit</Button>
       </Form>
-      <StreakView name="Programming" goalStreak="31"/>
+      <StreakView
+          name={habit.name}
+          streak={habit.streak}
+          startDate={habit.start_date}
+          goalStreak={habit.goal_streak}/>
       </div>
     );
   }
@@ -45,12 +55,15 @@ class StreakView extends Component {
     super(props);
     this.state = {
       habitName: this.props.name,
-      squares: Array(Number.parseInt(this.props.goalStreak)).fill(false),
+      // squares: Array(Number.parseInt(this.props.goalStreak)).fill(false),
+      squares: this.props.streak,
+      startDate: this.props.startDate,
       goalStreak: this.props.goalStreak
     };
     this.determineStreakView();
   }
   // calculate number of squares to place before
+  // TODO hold off on this section until completing today is done
   determineStreakView() {
     let now = moment();
     console.log(now.weekday());
@@ -58,16 +71,27 @@ class StreakView extends Component {
       console.log("Not sunday");
     }
   }
+  markTodayCompleted() {
+    // TODO get today's square
+    let now = moment().format(DATE_FORMAT);
+    // FIXME this is getting called at an imporper time
+    // console.log("Marking tody as completed")
+    this.state.squares.forEach(function(square) {
+      if (square.date === now) {
+        // TODO call mark created
+      }
+    })
+  }
   render() {
     let index = -1
     return (
       <div className="streak-view">
         <h3>{this.state.habitName}</h3>
-        {this.state.squares.map(function (completed, index) {
-          // TODO this section is temporarily drawing out squares as such
-          index++
-          return <StreakSquare key={index} index={index} completed={completed}/>;
+        {this.state.squares.map(function (square, index) {
+          index++;
+          return <StreakSquare key={square.date} date={square.date} index={index} completed={square.completed}/>;
         })}
+        <Button onClick={this.markTodayCompleted()}>Completed</Button>
       </div>
     );
   }
@@ -77,10 +101,12 @@ class StreakSquare extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      date: this.props.date,
       completed: this.props.completed
     };
   }
   markCompleted() {
+    console.log('Marking ' + date + ' as completed');
     this.setState({
       completed: true
     });
@@ -97,8 +123,7 @@ class StreakSquare extends Component {
   render() {
     return (
       <span className={this.getClass()}>{this.props.index}</span>);
-  }
-  // <button onClick={() => this.markCompleted()}></button>   
+  }   
 }
 
 export default Habit;

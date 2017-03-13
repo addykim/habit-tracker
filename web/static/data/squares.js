@@ -1,5 +1,8 @@
 export default {
+  "id": 1,
   "name": "Programming",
+  "goal_streak": 31,
+  "state_date": "2017-03-01",
   "streak": [
     {
       "date": "2017-03-01",
@@ -27,6 +30,30 @@ export default {
     },
     {
       "date": "2017-03-07",
+      "completed": false
+    },
+    {
+      "date": "2017-03-08",
+      "completed": false
+    },
+    {
+      "date": "2017-03-09",
+      "completed": false
+    },
+    {
+      "date": "2017-03-10",
+      "completed": true
+    },
+    {
+      "date": "2017-03-11",
+      "completed": false
+    },
+    {
+      "date": "2017-03-12",
+      "completed": true
+    },
+    {
+      "date": "2017-03-13",
       "completed": false
     }
   ]
