@@ -98,13 +98,14 @@ class StreakView extends Component {
   render() {
     let index = -1
     return (
-      <div className="streak-view">
-        <h3>{this.state.habitName}</h3>
-        <div>
+      <div className="habit-progress">
+        <h3
+            className="habit-header">
+            {this.state.habitName}</h3>
+        <div className="habit-streak-view">
           {this.state.squares.map(function (square, index) {
             index++;
             return (<StreakSquare
-                        className="center-block"
                         key={square.date}
                         date={square.date}
                         index={index}
@@ -113,7 +114,7 @@ class StreakView extends Component {
         </div>
         <div>
           <Button
-              className="center-block"
+              className="center-block completed-button"
               onClick={this.markTodayCompleted()}>
               Completed</Button>
         </div>
