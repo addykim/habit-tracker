@@ -6,7 +6,6 @@ import Login from './login';
 const gridInstance = (
   <Grid>
     <Row>
-      <Login/>
     </Row>
     <Row>
       <Habit/>
