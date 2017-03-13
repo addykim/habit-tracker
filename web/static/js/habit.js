@@ -76,6 +76,7 @@ class StreakView extends Component {
       startDate: this.props.startDate,
       goalStreak: this.props.goalStreak
     };
+    // this.markTodayCompleted === this.markTodayCompleted.bind(this);
     // this.determineStreakView();
   }
   // calculate number of squares to place before
@@ -90,13 +91,8 @@ class StreakView extends Component {
   markTodayCompleted() {
     // TODO get today's square
     let now = moment().format(DATE_FORMAT);
-    // FIXME this is getting called at an imporper time
-    // console.log("Marking tody as completed")
-    this.state.squares.forEach(function(square) {
-      if (square.date === now) {
-        // TODO call mark created
-      }
-    })
+    console.log("Marking today " + now + " as completed")
+    // TODO call mark created
   }
   render() {
     let index = -1
@@ -112,13 +108,15 @@ class StreakView extends Component {
                         key={square.date}
                         date={square.date}
                         index={index}
-                        completed={square.completed}/>);
+                        completed={square.completed}/>
+                    );
           })}
         </div>
         <div>
           <Button
               className="center-block completed-button"
-              onClick={this.markTodayCompleted()}>
+              type="button"
+              onClick={this.markTodayCompleted.bind(this)}>
               Completed</Button>
         </div>
       </div>
@@ -134,12 +132,13 @@ class StreakSquare extends Component {
       completed: this.props.completed
     };
   }
-  markCompleted() {
-    console.log('Marking ' + date + ' as completed');
-    this.setState({
-      completed: true
-    });
-  }
+  // markCompleted() {
+    // this.props.markCompleted(this.props.date)
+    // console.log('Marking ' + date + ' as completed');
+    // this.setState({
+      // completed: true
+    // });
+  // }
   getClass() {
     // TODO this section is temporary in how it will handle the behavior
     if (this.props.index == moment().date())
