@@ -6,6 +6,11 @@ import Login from './login';
 const gridInstance = (
   <Grid>
     <Row>
+      <ul
+          className="nav-bar">
+        <li>Home</li>
+        <li>About</li>
+      </ul>
     </Row>
     <Row>
       <Habit/>

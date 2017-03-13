@@ -42,23 +42,27 @@ class HabitForm extends Component {
   }
   render() {
     return (
-      <Form inline>
-        <FormGroup controlId="formInlineName">
-          <ControlLabel>I want to do </ControlLabel>
-          {' '}
-          <FormControl type="text" placeholder="habit" />
-        </FormGroup>
-          {' '}
-        <FormGroup controlId="formInlineEmail">
-          <ControlLabel>for </ControlLabel>
-          {' '}
-          <FormControl type="number" placeholder="21" />
-        </FormGroup>
-        {' '}
-        days
+      // action="scripturl" method="get|post"
+      <form
+          className="habit-form center-text">
+        <p>I want to do</p>
+        <input
+            id="habit-name-input"
+            className="center-text"
+            type="text"
+            name="habit-name"
+            placeholder="programming"/>
+        <p>for</p>
+        <input
+            id="days-input"
+            className="center-text"
+            type="number"
+            name="goal-streak"
+            placeholder="30"/>
+        <p>days</p>
         <Button type="submit">Submit</Button>
-      </Form>
-      )
+      </form>
+      );
   }
 }
 
@@ -72,7 +76,6 @@ class StreakView extends Component {
       startDate: this.props.startDate,
       goalStreak: this.props.goalStreak
     };
-    console.log(this.props);
     // this.determineStreakView();
   }
   // calculate number of squares to place before
