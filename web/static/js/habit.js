@@ -71,16 +71,18 @@ class HabitForm extends Component {
     this.setState({
       [name]: value
     })
-    //input validation
-    if (name === "goalStreak") {
-      if (!Number.isNaN(value) && value > 1) {
-        this.setState({
-          validInput: true
-        })
+    // input validation
+    if (name === "habitName") {
+      if (value.length === 0 || !value.trim()) {
+        this.setState({validInput:false})
       } else {
-        this.setState({
-          validInput: false
-        })
+        this.setState({validInput:true})
+      }
+    } else if (name === "goalStreak") {
+      if (!Number.isNaN(value) && value > 1) {
+        this.setState({validInput: true})
+      } else {
+        this.setState({validInput: false})
       }
     }
   }
