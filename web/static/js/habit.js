@@ -7,7 +7,11 @@ import dummysquares from '../data/squares';
 const DATE_FORMAT = "YYYY-MM-D"
 
 function isToday(date) {
-  return date === moment().format(DATE_FORMAT);
+  return date === getTodaysDate();
+}
+
+function getTodaysDate() {
+  return moment().format(DATE_FORMAT);
 }
 
 class Habit extends Component {
@@ -93,7 +97,7 @@ class StreakView extends Component {
     // }
   // }
   markTodayCompleted() {
-    let now = moment().format(DATE_FORMAT);
+    let now = getTodaysDate();
     let squares = this.state.squares;
     let index = 0;
     let notFound = true;
