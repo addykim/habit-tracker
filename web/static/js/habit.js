@@ -65,16 +65,28 @@ class HabitForm extends Component {
     })
   }
   handleSubmit(event) {
-    console.log('submitted: name' + this.state.habitName + ' goalStreak:' + this.state.goalStreak);
+    let habitName = this.state.habitName;
+    let goalStreak = this.state.goalStreak;
+    let todaysDate = getTodaysDate();
+    console.log(todaysDate);
     event.preventDefault();
     // TODO input validation
     // TODO populate array with new items of completion
     let newHabit = {
-      name: this.state.habitName,
-      goalStreak: this.state.goalStreak,
-      startDate: getTodaysDate(),
-      streak: Array(Number.parseInt(this.state.goalStreak)).fill(false),
+      name: habitName,
+      goalStreak: goalStreak,
+      startDate: todaysDate,
+      streak: []
     };
+    let date = moment(todaysDate);
+    for (let index = 0; index < goalStreak; index++) {
+      let square = {
+        completed: false,
+        date: date
+      }
+      date = moment(date).add(1, 'days').format(DATE_FORMAT)
+      newHabit.streak.push(square);
+    }
     console.log(newHabit);
     // TODO pass object to parent
     // TODO send to API
