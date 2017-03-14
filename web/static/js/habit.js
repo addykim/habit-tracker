@@ -116,7 +116,6 @@ class HabitForm extends Component {
   }
   render() {
     return (
-      // action="scripturl" method="get|post"
       <form
           className="habit-form center-text"
           onSubmit={this.handleSubmit}>
