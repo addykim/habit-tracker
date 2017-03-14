@@ -2,8 +2,8 @@ export default [
   {
     "id": 1,
     "name": "Programming",
-    "goal_streak": 31,
-    "state_date": "2017-03-01",
+    "goalStreak": 31,
+    "startDate": "2017-03-01",
     "streak": [
       {
         "date": "2017-03-01",
@@ -62,8 +62,8 @@ export default [
   {
     "id": 2,
     "name": "Reading",
-    "goal_streak": 60,
-    "state_date": "2017-03-01",
+    "goalStreak": 60,
+    "startDate": "2017-03-01",
     "streak": [
       {
         "date": "2017-03-01",
