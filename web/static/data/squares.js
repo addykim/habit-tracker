@@ -116,6 +116,30 @@ export default [
       {
         "date": "2017-03-13",
         "completed": false
+      },
+      {
+        "date": "2017-03-14",
+        "completed": false
+      },
+      {
+        "date": "2017-03-15",
+        "completed": false
+      },
+      {
+        "date": "2017-03-16",
+        "completed": false
+      },
+      {
+        "date": "2017-03-17",
+        "completed": false
+      },
+      {
+        "date": "2017-03-18",
+        "completed": false
+      },
+      {
+        "date": "2017-03-19",
+        "completed": false
       }
     ]
   }

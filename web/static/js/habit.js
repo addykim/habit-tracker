@@ -6,6 +6,10 @@ import dummysquares from '../data/squares';
 
 const DATE_FORMAT = "YYYY-MM-D"
 
+function isToday(date) {
+  return date === moment().format(DATE_FORMAT);
+}
+
 class Habit extends Component {
   constructor(props) {
     super();
@@ -81,18 +85,27 @@ class StreakView extends Component {
   }
   // calculate number of squares to place before
   // TODO hold off on this section until completing today is done
-  determineStreakView() {
-    let now = moment();
-    console.log(now.weekday());
-    if (now.weekday() !== 0) {
-      console.log("Not sunday");
-    }
-  }
+  // determineStreakView() {
+    // let now = moment();
+    // console.log(now.weekday());
+    // if (now.weekday() !== 0) {
+      // console.log("Not sunday");
+    // }
+  // }
   markTodayCompleted() {
-    // TODO get today's square
     let now = moment().format(DATE_FORMAT);
-    console.log("Marking today " + now + " as completed")
-    // TODO call mark created
+    let squares = this.state.squares;
+    let index = 0;
+    let notFound = true;
+    while (notFound) {
+      if (squares[index].date === now) {
+        console.log("Found at " + index);
+        notFound = false;
+      } else {
+        index++;
+      }
+    }
+    this.refs.today_square.markCompleted();
   }
   render() {
     let index = -1
@@ -104,8 +117,15 @@ class StreakView extends Component {
         <div className="habit-streak-view">
           {this.state.squares.map(function (square, index) {
             index++;
+            let ref;
+            if (isToday(square.date)) {
+              ref = "today_square";
+            } else {
+              ref = square.date;
+            }
             return (<StreakSquare
                         key={square.date}
+                        ref={ref}
                         date={square.date}
                         index={index}
                         completed={square.completed}/>
@@ -132,20 +152,17 @@ class StreakSquare extends Component {
       completed: this.props.completed
     };
   }
-  // markCompleted() {
-    // this.props.markCompleted(this.props.date)
-    // console.log('Marking ' + date + ' as completed');
-    // this.setState({
-      // completed: true
-    // });
-  // }
+  markCompleted() {
+    this.setState({
+      completed: true
+    });
+  }
   getClass() {
-    // TODO this section is temporary in how it will handle the behavior
-    if (this.props.index == moment().date())
-      return "square today"
     if (this.state.completed) {
       return "square completed";
     }
+    if (this.props.index == moment().date())
+      return "square today"
     return "square";
   }
   render() {
