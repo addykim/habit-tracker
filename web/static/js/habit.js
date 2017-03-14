@@ -36,36 +36,75 @@ class Habit extends Component {
             key={habit.id}
             name={habit.name}
             streak={habit.streak}
-            startDate={habit.start_date}
-            goalStreak={habit.goal_streak}/>);
+            startDate={habit.startDate}
+            goalStreak={habit.goalStreak}/>);
         })}
       </div>
     );
   }
 }
 
+const HABIT_FORM_DEFAULTS = {
+  habitName: '',
+  goalStreak: 0
+}
+
 class HabitForm extends Component {
   constructor(props) {
     super(props);
+    this.state = HABIT_FORM_DEFAULTS;
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+  handleSubmit(event) {
+    console.log('submitted: name' + this.state.habitName + ' goalStreak:' + this.state.goalStreak);
+    event.preventDefault();
+    // TODO input validation
+    // TODO populate array with new items of completion
+    let newHabit = {
+      name: this.state.habitName,
+      goalStreak: this.state.goalStreak,
+      startDate: getTodaysDate(),
+      streak: Array(Number.parseInt(this.state.goalStreak)).fill(false),
+    };
+    console.log(newHabit);
+    // TODO pass object to parent
+    // TODO send to API
+
+    // clear form
+    this.setState(HABIT_FORM_DEFAULTS);
   }
   render() {
     return (
       // action="scripturl" method="get|post"
       <form
-          className="habit-form center-text">
+          className="habit-form center-text"
+          onSubmit={this.handleSubmit}>
         <p>I want to do</p>
         <input
             id="habit-name-input"
             className="center-text"
             type="text"
-            name="habit-name"
+            name="habitName"
+            value={this.state.habitName}
+            onChange={this.handleChange}
             placeholder="programming"/>
         <p>for</p>
         <input
             id="days-input"
             className="center-text"
             type="number"
-            name="goal-streak"
+            name="goalStreak"
+            value={this.state.goalStreak}
+            onChange={this.handleChange}
             placeholder="30"/>
         <p>days</p>
         <Button type="submit">Submit</Button>
@@ -79,13 +118,10 @@ class StreakView extends Component {
     super(props);
     this.state = {
       habitName: this.props.name,
-      // squares: Array(Number.parseInt(this.props.goalStreak)).fill(false),
       squares: this.props.streak,
       startDate: this.props.startDate,
       goalStreak: this.props.goalStreak
     };
-    // this.markTodayCompleted === this.markTodayCompleted.bind(this);
-    // this.determineStreakView();
   }
   // calculate number of squares to place before
   // TODO hold off on this section until completing today is done
@@ -109,7 +145,7 @@ class StreakView extends Component {
         index++;
       }
     }
-    this.refs.today_square.markCompleted();
+    this.refs.todaySquare.markCompleted();
   }
   render() {
     let index = -1
@@ -123,7 +159,7 @@ class StreakView extends Component {
             index++;
             let ref;
             if (isToday(square.date)) {
-              ref = "today_square";
+              ref = "todaySquare";
             } else {
               ref = square.date;
             }
