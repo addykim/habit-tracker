@@ -52,7 +52,8 @@ class Habit extends Component {
 
 const HABIT_FORM_DEFAULTS = {
   habitName: '',
-  goalStreak: 0
+  goalStreak: '',
+  validInput: false
 }
 
 class HabitForm extends Component {
@@ -70,14 +71,25 @@ class HabitForm extends Component {
     this.setState({
       [name]: value
     })
+    //input validation
+    if (name === "goalStreak") {
+      if (!Number.isNaN(value) && value > 1) {
+        this.setState({
+          validInput: true
+        })
+      } else {
+        this.setState({
+          validInput: false
+        })
+      }
+    }
   }
   handleSubmit(event) {
     let habitName = this.state.habitName;
     let goalStreak = this.state.goalStreak;
     let todaysDate = getTodaysDate();
-    console.log(todaysDate);
     event.preventDefault();
-    // TODO input validation
+    // TODO change id
     let newHabit = {
       id: 3,
       name: habitName,
@@ -125,7 +137,10 @@ class HabitForm extends Component {
             onChange={this.handleChange}
             placeholder="30"/>
         <p>days</p>
-        <Button type="submit">Submit</Button>
+        <Button
+            type="submit"
+            disabled={!this.state.validInput}>
+            Submit</Button>
       </form>
       );
   }
