@@ -20,24 +20,30 @@ class Habit extends Component {
     this.state = {
       habits: dummysquares
     };
+    this.addNewHabit = this.addNewHabit.bind(this);
   }
-  // determineStreak(streak) {
-    // let now = moment();
-    // .weekday();
-    // let endDate = moment().add(streak, 'd');
-  // }
+  addNewHabit(newHabit) {
+    let habits = this.state.habits;
+    habits.push(newHabit);
+    this.setState({
+      habits: habits
+    })
+  }
   render() {
     return (
       <div
           className="center-block">
-        <HabitForm/>
+        <HabitForm
+            addOnSubmit={this.addNewHabit}/>
         {this.state.habits.map(function(habit) {
-          return (<StreakView
-            key={habit.id}
-            name={habit.name}
-            streak={habit.streak}
-            startDate={habit.startDate}
-            goalStreak={habit.goalStreak}/>);
+          return (
+            <StreakView
+                key={habit.id}
+                name={habit.name}
+                streak={habit.streak}
+                startDate={habit.startDate}
+                goalStreak={habit.goalStreak}/>
+          );
         })}
       </div>
     );
@@ -52,6 +58,7 @@ const HABIT_FORM_DEFAULTS = {
 class HabitForm extends Component {
   constructor(props) {
     super(props);
+    this.props.addOnSubmit;
     this.state = HABIT_FORM_DEFAULTS;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -71,14 +78,14 @@ class HabitForm extends Component {
     console.log(todaysDate);
     event.preventDefault();
     // TODO input validation
-    // TODO populate array with new items of completion
     let newHabit = {
+      id: 3,
       name: habitName,
       goalStreak: goalStreak,
       startDate: todaysDate,
       streak: []
     };
-    let date = moment(todaysDate);
+    let date = moment(todaysDate).format(DATE_FORMAT);
     for (let index = 0; index < goalStreak; index++) {
       let square = {
         completed: false,
@@ -87,8 +94,7 @@ class HabitForm extends Component {
       date = moment(date).add(1, 'days').format(DATE_FORMAT)
       newHabit.streak.push(square);
     }
-    console.log(newHabit);
-    // TODO pass object to parent
+    this.props.addOnSubmit(newHabit);
     // TODO send to API
 
     // clear form
@@ -151,7 +157,6 @@ class StreakView extends Component {
     let notFound = true;
     while (notFound) {
       if (squares[index].date === now) {
-        console.log("Found at " + index);
         notFound = false;
       } else {
         index++;
@@ -175,13 +180,14 @@ class StreakView extends Component {
             } else {
               ref = square.date;
             }
-            return (<StreakSquare
-                        key={square.date}
-                        ref={ref}
-                        date={square.date}
-                        index={index}
-                        completed={square.completed}/>
-                    );
+            return (
+                <StreakSquare
+                    key={square.date}
+                    ref={ref}
+                    date={square.date}
+                    index={index}
+                    completed={square.completed}/>
+                );
           })}
         </div>
         <div>
