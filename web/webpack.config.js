@@ -35,6 +35,19 @@ const config = {
       { test: /\.json$/, loader: 'json' }
     ]
   },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    host: 'localhost',
+    port: 3000,
+    proxy: {
+      '^/api/*': {
+        target: 'http://localhost:8080/api/',
+        secure: false
+      }
+    }
+  },
   plugins: [
     new ExtractTextPlugin({
       filename: 'style.css'
