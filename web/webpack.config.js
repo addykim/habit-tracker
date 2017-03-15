@@ -59,7 +59,7 @@ const config = {
     // }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'views/index.html'
+      template: 'public/index.html'
     })
   ]
 };
