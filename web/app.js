@@ -16,7 +16,7 @@ function checkAuthenticated(res) {
   res.status(401).send('You are not logged in. Access denied')
 }
 
-function 404notFound(res) {
+function notFound(res) {
   res.status(404).send('404 Not Found');
 }
 

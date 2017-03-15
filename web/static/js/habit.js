@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 import '../less/streak.less';
 import moment from 'moment';
-import dummysquares from '../data/squares';
+import dummysquares from '../data/squares.json';
 
 const DATE_FORMAT = "YYYY-MM-D"
 
