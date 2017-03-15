@@ -7,7 +7,7 @@ import dummysquares from '../data/squares.json';
 const DATE_FORMAT = "YYYY-MM-D"
 
 function isToday(date) {
-  return date === getTodaysDate();
+  return moment(date).format(DATE_FORMAT) === getTodaysDate();
 }
 
 function getTodaysDate() {
@@ -22,13 +22,8 @@ class Habit extends Component {
     };
     this.addNewHabit = this.addNewHabit.bind(this);
   }
-  addNewHabit(newHabit) {
-    let habits = this.state.habits;
-    habits.push(newHabit);
-    this.setState({
-      habits: habits
-    })
-  }
+  componentWillMount(){}
+  componentDidMount(){}
   render() {
     return (
       <div
@@ -48,6 +43,13 @@ class Habit extends Component {
       </div>
     );
   }
+  addNewHabit(newHabit) {
+    let habits = this.state.habits;
+    habits.push(newHabit);
+    this.setState({
+      habits: habits
+    })
+  }
 }
 
 const HABIT_FORM_DEFAULTS = {
@@ -63,6 +65,37 @@ class HabitForm extends Component {
     this.state = HABIT_FORM_DEFAULTS;
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  render() {
+    return (
+      <form
+          className="habit-form center-text"
+          onSubmit={this.handleSubmit}>
+        <p>I want to do</p>
+        <input
+            id="habit-name-input"
+            className="center-text"
+            type="text"
+            name="habitName"
+            value={this.state.habitName}
+            onChange={this.handleChange}
+            placeholder="programming"/>
+        <p>for</p>
+        <input
+            id="days-input"
+            className="center-text"
+            type="number"
+            name="goalStreak"
+            value={this.state.goalStreak}
+            onChange={this.handleChange}
+            placeholder="30"/>
+        <p>days</p>
+        <Button
+            type="submit"
+            disabled={!this.state.validInput}>
+            Submit</Button>
+      </form>
+      );
   }
   handleChange(event) {
     const target = event.target;
@@ -114,37 +147,6 @@ class HabitForm extends Component {
     // clear form
     this.setState(HABIT_FORM_DEFAULTS);
   }
-  render() {
-    return (
-      <form
-          className="habit-form center-text"
-          onSubmit={this.handleSubmit}>
-        <p>I want to do</p>
-        <input
-            id="habit-name-input"
-            className="center-text"
-            type="text"
-            name="habitName"
-            value={this.state.habitName}
-            onChange={this.handleChange}
-            placeholder="programming"/>
-        <p>for</p>
-        <input
-            id="days-input"
-            className="center-text"
-            type="number"
-            name="goalStreak"
-            value={this.state.goalStreak}
-            onChange={this.handleChange}
-            placeholder="30"/>
-        <p>days</p>
-        <Button
-            type="submit"
-            disabled={!this.state.validInput}>
-            Submit</Button>
-      </form>
-      );
-  }
 }
 
 class StreakView extends Component {
@@ -157,29 +159,8 @@ class StreakView extends Component {
       goalStreak: this.props.goalStreak
     };
   }
-  // calculate number of squares to place before
-  // TODO hold off on this section until completing today is done
-  // determineStreakView() {
-    // let now = moment();
-    // console.log(now.weekday());
-    // if (now.weekday() !== 0) {
-      // console.log("Not sunday");
-    // }
-  // }
-  markTodayCompleted() {
-    let now = getTodaysDate();
-    let squares = this.state.squares;
-    let index = 0;
-    let notFound = true;
-    while (notFound) {
-      if (squares[index].date === now) {
-        notFound = false;
-      } else {
-        index++;
-      }
-    }
-    this.refs.todaySquare.markCompleted();
-  }
+  componentWillMount() {}
+  componentDidMount() {}
   render() {
     let index = -1
     return (
@@ -216,6 +197,29 @@ class StreakView extends Component {
       </div>
     );
   }
+  // calculate number of squares to place before
+  // TODO hold off on this section until completing today is done
+  // determineStreakView() {
+    // let now = moment();
+    // console.log(now.weekday());
+    // if (now.weekday() !== 0) {
+      // console.log("Not sunday");
+    // }
+  // }
+  markTodayCompleted() {
+    let now = getTodaysDate();
+    let squares = this.state.squares;
+    let index = 0;
+    let notFound = true;
+    while (notFound) {
+      if (squares[index].date === now) {
+        notFound = false;
+      } else {
+        index++;
+      }
+    }
+    this.refs.todaySquare.markCompleted();
+  }
 }
 
 class StreakSquare extends Component {
@@ -225,6 +229,10 @@ class StreakSquare extends Component {
       date: this.props.date,
       completed: this.props.completed
     };
+  }
+  render() {
+    return (
+      <span className={this.getClass()}>{this.props.index}</span>);
   }
   markCompleted() {
     this.setState({
@@ -239,10 +247,6 @@ class StreakSquare extends Component {
       return "square today"
     return "square";
   }
-  render() {
-    return (
-      <span className={this.getClass()}>{this.props.index}</span>);
-  }   
 }
 
 export default Habit;
