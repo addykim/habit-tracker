@@ -3,6 +3,7 @@ const request = require('request')
 
 var app = express()
 
+app.use('/api', require('./routes/user'))
 app.use('/api', require('./routes/habit'))
 
 app.use('/public', express.static(__dirname + '/public'))
