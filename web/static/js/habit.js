@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 import '../less/streak.less';
 import moment from 'moment';
-import dummysquares from '../data/squares.json';
 
 const DATE_FORMAT = "YYYY-MM-D"
 
@@ -18,34 +17,39 @@ class Habit extends Component {
   constructor(props) {
     super();
     this.state = {
-      habits: dummysquares
+      habits: []
     };
     this.addNewHabit = this.addNewHabit.bind(this);
   }
   componentWillMount(){}
   componentDidMount(){}
   render() {
+    let mapping;
+    if (this.state.habits.length === 0) {
+      mapping = (<p>No habits created</p>)
+    } else {
+      mapping = this.state.habits.map(habit => {
+        return (
+        <StreakView
+          key={habit.id}
+          name={habit.name}
+          streak={habit.streak}
+          startDate={habit.startDate}
+          goalStreak={habit.goalStreak}/>)
+      })
+    }
     return (
-      <div
-          className="center-block">
-        <HabitForm
-            addOnSubmit={this.addNewHabit}/>
-        {this.state.habits.map(function(habit) {
-          return (
-            <StreakView
-                key={habit.id}
-                name={habit.name}
-                streak={habit.streak}
-                startDate={habit.startDate}
-                goalStreak={habit.goalStreak}/>
-          );
-        })}
+      <div className="center-block">
+        <HabitForm addOnSubmit={this.addNewHabit}/>
+        {mapping}
       </div>
     );
   }
   addNewHabit(newHabit) {
+    console.log(habits)
     let habits = this.state.habits;
     habits.push(newHabit);
+    console.log(habits)
     this.setState({
       habits: habits
     })
