@@ -3,7 +3,7 @@ import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstra
 import '../less/streak.less'
 import moment from 'moment'
 
-const DATE_FORMAT = "YYYY-MM-D"
+const DATE_FORMAT = 'YYYY-MM-D'
 
 function isToday(date) {
   return moment(date).format(DATE_FORMAT) === getTodaysDate()
