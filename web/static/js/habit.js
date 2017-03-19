@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
-import '../less/streak.less';
-import moment from 'moment';
+import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
+import '../less/streak.less'
+import moment from 'moment'
 
 const DATE_FORMAT = "YYYY-MM-D"
 
 function isToday(date) {
-  return moment(date).format(DATE_FORMAT) === getTodaysDate();
+  return moment(date).format(DATE_FORMAT) === getTodaysDate()
 }
 
 function getTodaysDate() {
-  return moment().format(DATE_FORMAT);
+  return moment().format(DATE_FORMAT)
 }
 
 class Habit extends Component {
   constructor(props) {
-    super();
+    super()
     this.state = {
       habits: []
-    };
-    this.addNewHabit = this.addNewHabit.bind(this);
+    }
+    this.addNewHabit = this.addNewHabit.bind(this)
   }
   componentWillMount(){}
   componentDidMount(){}
@@ -46,10 +46,8 @@ class Habit extends Component {
     );
   }
   addNewHabit(newHabit) {
-    console.log(habits)
-    let habits = this.state.habits;
-    habits.push(newHabit);
-    console.log(habits)
+    let habits = this.state.habits
+    habits.push(newHabit)
     this.setState({
       habits: habits
     })
@@ -64,11 +62,11 @@ const HABIT_FORM_DEFAULTS = {
 
 class HabitForm extends Component {
   constructor(props) {
-    super(props);
-    this.props.addOnSubmit;
-    this.state = HABIT_FORM_DEFAULTS;
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.props.addOnSubmit
+    this.state = HABIT_FORM_DEFAULTS
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   render() {
     return (
@@ -102,9 +100,9 @@ class HabitForm extends Component {
       );
   }
   handleChange(event) {
-    const target = event.target;
-    const name = target.name;
-    const value = target.value;
+    const target = event.target
+    const name = target.name
+    const value = target.value
     this.setState({
       [name]: value
     })
@@ -124,10 +122,10 @@ class HabitForm extends Component {
     }
   }
   handleSubmit(event) {
-    let habitName = this.state.habitName;
-    let goalStreak = this.state.goalStreak;
-    let todaysDate = getTodaysDate();
-    event.preventDefault();
+    let habitName = this.state.habitName
+    let goalStreak = this.state.goalStreak
+    let todaysDate = getTodaysDate()
+    event.preventDefault()
     // TODO change id
     let newHabit = {
       id: 3,
@@ -143,13 +141,13 @@ class HabitForm extends Component {
         date: date
       }
       date = moment(date).add(1, 'days').format(DATE_FORMAT)
-      newHabit.streak.push(square);
+      newHabit.streak.push(square)
     }
-    this.props.addOnSubmit(newHabit);
+    this.props.addOnSubmit(newHabit)
     // TODO send to API
 
     // clear form
-    this.setState(HABIT_FORM_DEFAULTS);
+    this.setState(HABIT_FORM_DEFAULTS)
   }
 }
 
@@ -174,12 +172,12 @@ class StreakView extends Component {
             {this.state.habitName}</h3>
         <div className="habit-streak-view">
           {this.state.squares.map(function (square, index) {
-            index++;
-            let ref;
+            index++
+            let ref
             if (isToday(square.date)) {
-              ref = "todaySquare";
+              ref = "todaySquare"
             } else {
-              ref = square.date;
+              ref = square.date
             }
             return (
                 <StreakSquare
@@ -212,27 +210,27 @@ class StreakView extends Component {
   // }
   markTodayCompleted() {
     let now = getTodaysDate();
-    let squares = this.state.squares;
-    let index = 0;
-    let notFound = true;
+    let squares = this.state.squares
+    let index = 0
+    let notFound = true
     while (notFound) {
       if (squares[index].date === now) {
-        notFound = false;
+        notFound = false
       } else {
-        index++;
+        index++
       }
     }
-    this.refs.todaySquare.markCompleted();
+    this.refs.todaySquare.markCompleted()
   }
 }
 
 class StreakSquare extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       date: this.props.date,
       completed: this.props.completed
-    };
+    }
   }
   render() {
     return (
@@ -245,11 +243,11 @@ class StreakSquare extends Component {
   }
   getClass() {
     if (this.state.completed) {
-      return "square completed";
+      return "square completed"
     }
     if (this.props.index == moment().date())
       return "square today"
-    return "square";
+    return "square"
   }
 }
 
