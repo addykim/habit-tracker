@@ -3,15 +3,12 @@ const request = require('request')
 
 var app = express()
 
-app.use('/api', require('./routes/user'))
-app.use('/api', require('./routes/habit'))
+app.use(require('cors')())
+
+app.use('/api/user', require('./routes/user'))
+app.use('/api/habit', require('./routes/habit'))
 
 app.use('/public', express.static(__dirname + '/public'))
-
-// dummy database
-var users = {
-  tj: { name: 'tj' }
-};
 
 app.get('/', function(req, res) {
   res.send('Hello world!')
@@ -53,24 +50,27 @@ app.get('/logout', function(req, res){
   });
 });
 
-function restrict(req, res, next) {
-  if (req.session.user) {
-    next();
-  } else {
-    req.session.error = 'Access denied!';
-    res.redirect('/login');
-  }
-}
+// TODO debug
+// function restrict(req, res, next) {
+//   if (req.session.user) {
+//     next();
+//   } else {
+//     req.session.error = 'Access denied!';
+//     res.redirect('/login');
+//   }
+// }
 
-app.get('/restricted', restrict, function(req, res){
-  res.status(401).send('You are not logged in. Access denied')
-})
+// TODO debug
+// app.get('/restricted', restrict, function(req, res){
+  // res.status(401).send('You are not logged in. Access denied')
+// })
 
-app.use(function(err, req, res, next) {
-  console.error(err.stack)
-  res.status(404).send('404 Not Found');  
-})
+// TODO debug
+// app.use(function(err, req, res, next) {
+  // console.error(err.stack)
+  // res.status(404).send('404 Not Found');  
+// })
 
 app.listen(8080, function() {
-  console.log('Listening on port 8080')
+  console.log('Listening on port 8080 with CORS-enabled')
 })
