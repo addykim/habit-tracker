@@ -1,10 +1,15 @@
 const router = require('express').Router()
 
+router.use(function(req, res, next) {
+  console.log(req.method, req.url)
+  next()
+})
+
 // makeshift database
 let habits = require('../static/data/user1.json')
 .concat(require('../static/data/user2.json'))
 
-router.route('/habit/:habitId')
+router.route('/:habitId')
   .get(function(req, res) {
     // temporarily get habit based on index, disregarding id
     let habitId = req.params.habitId
