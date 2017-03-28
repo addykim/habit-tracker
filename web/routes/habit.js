@@ -9,12 +9,16 @@ router.use(function(req, res, next) {
 let habits = require('../static/data/user1.json')
 .concat(require('../static/data/user2.json'))
 
+function getHabit(habitId) {
+  return habits[habitId-1]
+}
+
 router.route('/:habitId')
   .get(function(req, res) {
     // temporarily get habit based on index, disregarding id
     let habitId = req.params.habitId
     // input validation
-    res.send(habits[habitId-1])
+    res.send(getHabit(habitId))
   })
   .post(function(req, res) {
     // TODO create habit
@@ -24,4 +28,4 @@ router.route('/:habitId')
     //TODO update habit
   })
 
-module.exports = router
+module.exports = {router, getHabit}

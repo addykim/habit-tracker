@@ -6,7 +6,7 @@ var app = express()
 app.use(require('cors')())
 
 app.use('/api/user', require('./routes/user'))
-app.use('/api/habit', require('./routes/habit'))
+app.use('/api/habit', require('./routes/habit').router)
 
 app.use('/public', express.static(__dirname + '/public'))
 

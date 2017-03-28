@@ -1,11 +1,13 @@
 [
   {
     "id": 1,
-    "name": "Will Troung"
+    "name": "Will Troung",
+    "habit_ids": [1, 2]
   },
   {
     "id": 2,
-    "name": "Addy Kim"
+    "name": "Addy Kim",
+    "habit_ids": [3, 4]
   },
   {
     "id": 3,
