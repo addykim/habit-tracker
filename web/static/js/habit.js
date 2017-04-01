@@ -8,7 +8,7 @@ import moment from 'moment'
 
 var dummy_id = 6
 
-const DATE_FORMAT = 'YYYY-MM-D'
+const DATE_FORMAT = 'YYYY-MM-DD'
 
 function isToday(date) {
   return moment(date).format(DATE_FORMAT) === getTodaysDate()
@@ -179,28 +179,39 @@ class StreakView extends Component {
   componentWillMount() {}
   componentDidMount() {}
   render() {
-    // if first day of streak does not start on sunday
-    // add padding
     let days
     let paddingBefore = []
-    // TODO insert padding after
     let startDate = moment(this.state.startDate)
     let startDayOfWeek = startDate.day()
     if (startDayOfWeek !== 0) {
-      console.log('inserting padding before')
       let paddingDate = moment(this.state.startDate).subtract(startDayOfWeek, 'days')
       for (let i = 0; i < startDayOfWeek; i++) {
         paddingBefore.push({
-          date: paddingDate.toString(),
+          date: paddingDate.format(DATE_FORMAT),
           completed: false,
-          padding: true
+          isPadding: true
         })
         paddingDate = moment(paddingDate).add(1, 'days')
       }
       days = paddingBefore.concat(this.state.squares)
     } else {
-      console.log('no padding')
       days = this.state.squares
+    }
+
+    let endDate = this.state.squares[this.state.squares.length-1].date
+    let endDayOfWeek = moment(endDate).day()
+    if (endDayOfWeek < 6) {
+      let paddingAfter = []
+      let paddingDate = moment(endDate).add(1, 'days')
+      for (let i = endDayOfWeek; i < 6; i++) {
+        paddingAfter.push({
+          date: paddingDate.format(DATE_FORMAT),
+          completed: false,
+          isPadding: true
+        })
+        paddingDate = moment(paddingDate).add(1, 'days')
+      }
+      days = days.concat(paddingAfter)
     }
 
     let weekView = []
@@ -208,10 +219,8 @@ class StreakView extends Component {
     days.forEach(function(day) {
       if (weekView[week] === undefined || weekView[week] ===  null) {
         weekView[week] = []
-      } else {
-        weekView[week].push(day)
       }
-      
+      weekView[week].push(day)
       if (weekView[week].length === 7) {
         week++
       }
@@ -275,7 +284,6 @@ class StreakViewRow extends Component {
     return (
       <div className="square-row">
         {this.state.squares.map(function (square) {
-          console.log(square)
           let ref
           if (isToday(square.date)) {
             ref = "todaySquare"
@@ -288,6 +296,7 @@ class StreakViewRow extends Component {
                 ref={ref}
                 date={square.date}
                 isHeader={isHeader}
+                isPadding={square.isPadding}
                 completed={square.completed}/>
             )
         })}
@@ -299,9 +308,14 @@ class StreakViewRow extends Component {
 class StreakSquare extends Component {
   constructor(props) {
     super(props)
+    let isPadding = this.props.isPadding
+    if (isPadding === undefined) {
+      isPadding = false
+    }
     this.state = {
       date: this.props.date,
       isHeader: this.props.isHeader,
+      isPadding: isPadding,
       completed: this.props.completed
     }
   }
@@ -310,22 +324,25 @@ class StreakSquare extends Component {
     if (this.state.isHeader) {
       dayDate = this.state.date
     } else {
-      dayDate = this.state.date.substring(this.state.date.length-2)
+      dayDate = moment(this.state.date).format(DATE_FORMAT).substring(this.state.date.length-2)
     }
     return (
       <span className={this.getClass()}>{dayDate}</span>);
   }
   markCompleted() {
-    this.setState({
-      completed: true
-    });
+    this.setState({completed: true})
   }
   getClass() {
     let classNames = ['square']
     if (this.state.completed)
       classNames.push('completed')
-    if (this.props.index == moment().date())
-      classNames.push('today')
+    else if (this.state.isHeader)
+      classNames.push('header')
+    else if (this.state.isPadding)
+      classNames.push('disabled')
+    // TODO today
+    // if (this.props.index == moment().date())
+      // classNames.push('today')
     return classNames.join(' ')
   }
 }

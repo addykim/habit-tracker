@@ -41,17 +41,28 @@ input {
 
 @square-side-length: 10px;
 
-@square-completed: #BCED91;
-@square-today: #99ccff;
-@square-blank: #D3D3D3;
+@square-header: #5bc0de;
+@square-disabled: #eceeef;
+@square-completed: #5cb85c;
+@square-today: #0275d8;
+@square-blank: #464a4c;
+@square-text: #ffffff;
 @square-margin: 5px;
 
 .square {
   height: @square-side-length;
   width: @square-side-length;
+  color: @square-text;
   background-color: @square-blank;
   padding: @square-side-length;
   margin: 0 @square-margin 0 @square-margin;
+  &.header {
+    background-color: @square-header;
+  }
+
+  &.disabled {
+    background-color: @square-disabled;
+  }
 
   &.completed {
     background-color: @square-completed;

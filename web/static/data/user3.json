@@ -124,10 +124,6 @@
       {
         "date": "2017-04-30",
         "completed": false
-      },
-      {
-        "date": "2017-04-31",
-        "completed": false
       }
     ]
   },
@@ -207,10 +203,6 @@
       },
       {
         "date": "2017-04-18",
-        "completed": false
-      },
-      {
-        "date": "2017-04-19",
         "completed": false
       }
     ]
