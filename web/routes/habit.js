@@ -7,7 +7,8 @@ router.use(function(req, res, next) {
 
 // makeshift database
 let habits = require('../static/data/user1.json')
-.concat(require('../static/data/user2.json'))
+    .concat(require('../static/data/user2.json'))
+    .concat(require('../static/data/user3.json'))
 
 function getHabit(habitId) {
   return habits[habitId-1]

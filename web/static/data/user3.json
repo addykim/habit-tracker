@@ -1,7 +1,7 @@
 [
   {
-    "id": 1,
-    "name": "Programming",
+    "id": 5,
+    "name": "Become a fluffy kitty",
     "goalStreak": 31,
     "startDate": "2017-04-01",
     "streak": [
@@ -132,9 +132,9 @@
     ]
   },
   {
-    "id": 2,
-    "name": "Reading",
-    "goalStreak": 19,
+    "id": 6,
+    "name": "Get a hot bod as a fluffy kitty",
+    "goalStreak": 66,
     "startDate": "2017-04-01",
     "streak": [
       {

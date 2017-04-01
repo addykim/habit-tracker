@@ -11,6 +11,7 @@
   },
   {
     "id": 3,
-    "name": "Megan Weijiang"
+    "name": "Megan Weijiang",
+    "habit_ids": [5, 6]
   }
 ]
