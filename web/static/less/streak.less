@@ -47,9 +47,11 @@ input {
 @square-margin: 5px;
 
 .square {
+  height: @square-side-length;
+  width: @square-side-length;
   background-color: @square-blank;
   padding: @square-side-length;
-  margin: @square-margin;
+  margin: 0 @square-margin 0 @square-margin;
 
   &.completed {
     background-color: @square-completed;

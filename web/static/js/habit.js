@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
+
+import * as calenderHeader from '../data/calHeader.json'
+
 import '../less/streak.less'
 import moment from 'moment'
 
@@ -165,7 +168,7 @@ class HabitForm extends Component {
 
 class StreakView extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       habitName: this.props.name,
       squares: this.props.streak,
@@ -180,12 +183,20 @@ class StreakView extends Component {
     // add padding
     let days
     let paddingBefore = []
-    let startDayOfWeek = moment(this.state.startDate).day()
+    // TODO insert padding after
+    let startDate = moment(this.state.startDate)
+    let startDayOfWeek = startDate.day()
     if (startDayOfWeek !== 0) {
-      console.log('inserting padding')
-      let firstDayOfPadding = moment(this.state.startDate).subtract(startDayOfWeek, 'day')
-      // console.log(firstDayOfPadding)
-      // TODO add padding
+      console.log('inserting padding before')
+      let paddingDate = moment(this.state.startDate).subtract(startDayOfWeek, 'days')
+      for (let i = 0; i < startDayOfWeek; i++) {
+        paddingBefore.push({
+          date: paddingDate.toString(),
+          completed: false,
+          padding: true
+        })
+        paddingDate = moment(paddingDate).add(1, 'days')
+      }
       days = paddingBefore.concat(this.state.squares)
     } else {
       console.log('no padding')
@@ -208,15 +219,20 @@ class StreakView extends Component {
     let index = -1
     return (
       <div className="habit-progress center-text">
-        <h3
-            className="habit-header">
-            {this.state.habitName}</h3>
+        <h3 className="habit-header">{this.state.habitName}</h3>
         <div className="habit-streak-view">
+          <StreakViewRow
+              key={'header'}
+              squares={calenderHeader.default}
+              isHeader={true}/>
           {weekView.map(function (row, index) {
             index++
-            return (<StreakViewRow
-              key={index}
-              squares={row}/>)
+            return (
+              <StreakViewRow
+                key={index}
+                squares={row}
+                isHeader={false}/>
+            )
           })}
         </div>
         <div>
@@ -224,20 +240,12 @@ class StreakView extends Component {
               className="center-block completed-button"
               type="button"
               onClick={this.markTodayCompleted.bind(this)}>
-              Completed</Button>
+              Completed
+          </Button>
         </div>
       </div>
-    );
+    )
   }
-  // calculate number of squares to place before
-  // TODO hold off on this section until completing today is done
-  // determineStreakView() {
-    // let now = moment();
-    // console.log(now.weekday());
-    // if (now.weekday() !== 0) {
-      // console.log("Not sunday");
-    // }
-  // }
   markTodayCompleted() {
     let now = getTodaysDate()
     let squares = this.state.squares
@@ -258,15 +266,16 @@ class StreakViewRow extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      squares: this.props.squares
+      squares: this.props.squares,
+      isHeader: this.props.isHeader
     }
   }
   render () {
-    let index = -1
+    let isHeader = this.state.isHeader
     return (
       <div className="square-row">
-        {this.state.squares.map(function (square, index) {
-          index++
+        {this.state.squares.map(function (square) {
+          console.log(square)
           let ref
           if (isToday(square.date)) {
             ref = "todaySquare"
@@ -278,11 +287,12 @@ class StreakViewRow extends Component {
                 key={square.date}
                 ref={ref}
                 date={square.date}
-                index={index}
+                isHeader={isHeader}
                 completed={square.completed}/>
-            );
+            )
         })}
-      </div>)
+      </div>
+    )
   }
 }
 
@@ -291,11 +301,17 @@ class StreakSquare extends Component {
     super(props)
     this.state = {
       date: this.props.date,
+      isHeader: this.props.isHeader,
       completed: this.props.completed
     }
   }
   render() {
-    let dayDate = this.state.date.substring(this.state.date.length-2)
+    let dayDate;
+    if (this.state.isHeader) {
+      dayDate = this.state.date
+    } else {
+      dayDate = this.state.date.substring(this.state.date.length-2)
+    }
     return (
       <span className={this.getClass()}>{dayDate}</span>);
   }
@@ -305,12 +321,12 @@ class StreakSquare extends Component {
     });
   }
   getClass() {
-    if (this.state.completed) {
-      return "square completed"
-    }
+    let classNames = ['square']
+    if (this.state.completed)
+      classNames.push('completed')
     if (this.props.index == moment().date())
-      return "square today"
-    return "square"
+      classNames.push('today')
+    return classNames.join(' ')
   }
 }
 
