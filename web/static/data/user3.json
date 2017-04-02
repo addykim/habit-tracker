@@ -2,12 +2,43 @@
   {
     "id": 5,
     "name": "Become a fluffy kitty",
-    "goalStreak": 31,
+    "goalStreak": 17,
     "startDate": "2017-04-01",
     "streak": [
       {
+        "date": "2017-03-26",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-27",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-28",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-29",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-30",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-31",
+        "completed": false,
+        "isPadding": true
+      },
+      {
         "date": "2017-04-01",
-        "completed": false
+        "completed": false,
+        "isPadding": false
       },
       {
         "date": "2017-04-02",
@@ -15,7 +46,7 @@
       },
       {
         "date": "2017-04-03",
-        "completed": true
+        "completed": false
       },
       {
         "date": "2017-04-04",
@@ -27,7 +58,7 @@
       },
       {
         "date": "2017-04-06",
-        "completed": true
+        "completed": false
       },
       {
         "date": "2017-04-07",
@@ -99,43 +130,70 @@
       },
       {
         "date": "2017-04-24",
-        "completed": false
-      },
-      {
+        "completed": false,
+        "isPadding": false
+      },{
         "date": "2017-04-25",
-        "completed": false
-      },
-      { 
+        "completed": false,
+        "isPadding": true
+      },{
         "date": "2017-04-26",
-        "completed": false
-      },
-      {
+        "completed": false,
+        "isPadding": true
+      },{
         "date": "2017-04-27",
-        "completed": false
-      },
-      {
+        "completed": false,
+        "isPadding": true
+      },{
         "date": "2017-04-28",
-        "completed": false
-      },
-      {
+        "completed": false,
+        "isPadding": true
+      },{
         "date": "2017-04-29",
-        "completed": false
-      },
-      {
-        "date": "2017-04-30",
-        "completed": false
+        "completed": false,
+        "isPadding": true
       }
     ]
   },
   {
     "id": 6,
     "name": "Get a hot bod as a fluffy kitty",
-    "goalStreak": 66,
-    "startDate": "2017-04-01",
+    "goalStreak": 21,
+    "startDate": "2017-03-29",
     "streak": [
       {
+        "date": "2017-03-26",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-27",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-28",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-03-29",
+        "completed": false,
+        "isPadding": false
+      },
+      {
+        "date": "2017-03-30",
+        "completed": false,
+        "isPadding": false
+      },
+      {
+        "date": "2017-03-31",
+        "completed": false,
+        "isPadding": false
+      },
+      {
         "date": "2017-04-01",
-        "completed": true
+        "completed": false
       },
       {
         "date": "2017-04-02",
@@ -203,7 +261,24 @@
       },
       {
         "date": "2017-04-18",
-        "completed": false
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-04-19",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-04-20",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-04-21",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-04-22",
+        "completed": false,
+        "isPadding": true
       }
     ]
   }

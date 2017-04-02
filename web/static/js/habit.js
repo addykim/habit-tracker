@@ -18,6 +18,46 @@ function getTodaysDate() {
   return moment().format(DATE_FORMAT)
 }
 
+// add padding before and after streak for A E S T H E T I C calendar view
+// squares should be an array of square objects
+function padSquares(squares, startDate) {
+  startDate = moment(startDate)
+  let days
+  let paddingBefore = []
+  let startDayOfWeek = startDate.day()
+  if (startDayOfWeek !== 0) {
+    let paddingDate = moment(startDate).subtract(startDayOfWeek, 'days')
+    for (let i = 0; i < startDayOfWeek; i++) {
+      paddingBefore.push({
+        date: paddingDate.format(DATE_FORMAT),
+        completed: false,
+        isPadding: true
+      })
+      paddingDate = moment(paddingDate).add(1, 'days')
+    }
+    days = paddingBefore.concat(squares)
+  } else {
+    days = squares
+  }
+
+  let endDate = squares[squares.length-1].date
+  let endDayOfWeek = moment(endDate).day()
+  if (endDayOfWeek < 6) {
+    let paddingAfter = []
+    let paddingDate = moment(endDate).add(1, 'days')
+    for (let i = endDayOfWeek; i < 6; i++) {
+      paddingAfter.push({
+        date: paddingDate.format(DATE_FORMAT),
+        completed: false,
+        isPadding: true
+      })
+      paddingDate = moment(paddingDate).add(1, 'days')
+    }
+    days = days.concat(paddingAfter)
+  }
+  return days
+}
+
 class Habit extends Component {
   constructor(props) {
     super()
@@ -153,11 +193,13 @@ class HabitForm extends Component {
     for (let index = 0; index < goalStreak; index++) {
       let square = {
         completed: false,
-        date: date
+        date: date,
+        isPadding: false
       }
       date = moment(date).add(1, 'days').format(DATE_FORMAT)
       newHabit.streak.push(square)
     }
+    newHabit.streak = padSquares(newHabit.streak, newHabit.startDate)
     this.props.addOnSubmit(newHabit)
     // TODO send to API
 
@@ -179,41 +221,7 @@ class StreakView extends Component {
   componentWillMount() {}
   componentDidMount() {}
   render() {
-    let days
-    let paddingBefore = []
-    let startDate = moment(this.state.startDate)
-    let startDayOfWeek = startDate.day()
-    if (startDayOfWeek !== 0) {
-      let paddingDate = moment(this.state.startDate).subtract(startDayOfWeek, 'days')
-      for (let i = 0; i < startDayOfWeek; i++) {
-        paddingBefore.push({
-          date: paddingDate.format(DATE_FORMAT),
-          completed: false,
-          isPadding: true
-        })
-        paddingDate = moment(paddingDate).add(1, 'days')
-      }
-      days = paddingBefore.concat(this.state.squares)
-    } else {
-      days = this.state.squares
-    }
-
-    let endDate = this.state.squares[this.state.squares.length-1].date
-    let endDayOfWeek = moment(endDate).day()
-    if (endDayOfWeek < 6) {
-      let paddingAfter = []
-      let paddingDate = moment(endDate).add(1, 'days')
-      for (let i = endDayOfWeek; i < 6; i++) {
-        paddingAfter.push({
-          date: paddingDate.format(DATE_FORMAT),
-          completed: false,
-          isPadding: true
-        })
-        paddingDate = moment(paddingDate).add(1, 'days')
-      }
-      days = days.concat(paddingAfter)
-    }
-
+    let days = this.state.squares
     let weekView = []
     let week = 0
     days.forEach(function(day) {
@@ -260,7 +268,9 @@ class StreakView extends Component {
     let squares = this.state.squares
     let index = 0
     let notFound = true
+    // TODO if padding do not mark completed
     while (notFound) {
+      console.log(squares[index].date)
       if (squares[index].date === now) {
         notFound = false
       } else {
@@ -285,7 +295,7 @@ class StreakViewRow extends Component {
       <div className="square-row">
         {this.state.squares.map(function (square) {
           let ref
-          if (isToday(square.date)) {
+          if (isToday(square.date) && isHeader) {
             ref = "todaySquare"
           } else {
             ref = square.date
