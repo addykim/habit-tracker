@@ -223,17 +223,20 @@ class StreakView extends Component {
   render() {
     let days = this.state.squares
     let weekView = []
-    let week = 0
+    let week = 0, weekWithToday = 0
     days.forEach(function(day) {
       if (weekView[week] === undefined || weekView[week] ===  null) {
         weekView[week] = []
       }
       weekView[week].push(day)
+      if (day.date === getTodaysDate()) {
+        weekWithToday = week
+      }
       if (weekView[week].length === 7) {
         week++
       }
     })
-    let index = -1
+    let index = 0
     return (
       <div className="habit-progress center-text">
         <h3 className="habit-header">{this.state.habitName}</h3>
@@ -243,10 +246,17 @@ class StreakView extends Component {
               squares={calenderHeader.default}
               isHeader={true}/>
           {weekView.map(function (row, index) {
+            let ref
+            if (index === weekWithToday) {
+              ref = 'thisweek'
+            } else {
+              ref = 'row-' + index
+            }
             index++
             return (
               <StreakViewRow
                 key={index}
+                ref={ref}
                 squares={row}
                 isHeader={false}/>
             )
@@ -264,20 +274,22 @@ class StreakView extends Component {
     )
   }
   markTodayCompleted() {
-    let now = getTodaysDate()
+    let today = getTodaysDate()
     let squares = this.state.squares
     let index = 0
     let notFound = true
-    // TODO if padding do not mark completed
     while (notFound) {
-      console.log(squares[index].date)
-      if (squares[index].date === now) {
+      // if (!squares[index].isPadding) {
+      if (squares[index].date === today) {
         notFound = false
+        squares[index].completed = true
       } else {
         index++
       }
+      // }
     }
-    this.refs.todaySquare.markCompleted()
+    let differenceStartToday = Math.floor(Math.abs(moment(squares[0].date).diff(today, 'days')) / 7)
+    this.refs.thisweek.markSquareCompleted()
   }
 }
 
@@ -289,21 +301,20 @@ class StreakViewRow extends Component {
       isHeader: this.props.isHeader
     }
   }
+  markSquareCompleted() {
+    let today = getTodaysDate()
+    this.refs.today.markCompleted()
+  }
   render () {
     let isHeader = this.state.isHeader
     return (
       <div className="square-row">
         {this.state.squares.map(function (square) {
-          let ref
-          if (isToday(square.date) && isHeader) {
-            ref = "todaySquare"
-          } else {
-            ref = square.date
-          }
+          let squareDate = isToday(square.date) ? 'today' : square.date
           return (
             <StreakSquare
                 key={square.date}
-                ref={ref}
+                ref={squareDate}
                 date={square.date}
                 isHeader={isHeader}
                 isPadding={square.isPadding}
@@ -328,6 +339,7 @@ class StreakSquare extends Component {
       isPadding: isPadding,
       completed: this.props.completed
     }
+    this.markCompleted = this.markCompleted.bind(this)
   }
   render() {
     let dayDate;
