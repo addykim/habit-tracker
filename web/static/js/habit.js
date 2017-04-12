@@ -11,6 +11,8 @@ var dummy_id = 6
 const DATE_FORMAT = 'YYYY-MM-DD'
 
 function isToday(date) {
+  if (date.length === 2)
+    return false
   return moment(date).format(DATE_FORMAT) === getTodaysDate()
 }
 
