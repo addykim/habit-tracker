@@ -8,7 +8,7 @@ const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
 
 const config = {
-  entry: './static/js/index.js',
+  entry: './static/js/index.jsx',
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
