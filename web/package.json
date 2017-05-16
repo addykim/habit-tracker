@@ -20,7 +20,11 @@
     "babel-preset-react": "^6.23.0",
     "cors": "^2.8.1",
     "css-loader": "^0.18.0",
-    "eslint": "^3.17.1",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^5.0.1",
+    "eslint-plugin-react": "^7.0.1",
     "extract-text-webpack-plugin": "^2.1.0",
     "html-webpack-plugin": "^2.28.0",
     "json-loader": "^0.5.4",
@@ -33,7 +37,8 @@
   "scripts": {
     "start": "webpack --progress --colors",
     "dev-server": "nodemon app.js localhost 8080",
-    "dev-client": "webpack-dev-server --port 3000 --hot --inline"
+    "dev-client": "webpack-dev-server --port 3000 --hot --inline",
+    "lint": "eslint client"
   },
   "maintainers": [
     {
