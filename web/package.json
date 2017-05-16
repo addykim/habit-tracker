@@ -30,6 +30,7 @@
     "json-loader": "^0.5.4",
     "less": "^2.7.2",
     "less-loader": "^2.2.3",
+    "mocha": "^3.4.1",
     "nodemon": "^1.11.0",
     "style-loader": "^0.12.3",
     "webpack-dev-server": "^2.4.1"
@@ -38,7 +39,8 @@
     "start": "webpack --progress --colors",
     "dev-server": "nodemon app.js localhost 8080",
     "dev-client": "webpack-dev-server --port 3000 --hot --inline",
-    "lint": "eslint client"
+    "lint": "eslint client",
+    "test": "mocha"
   },
   "maintainers": [
     {
