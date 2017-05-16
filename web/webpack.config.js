@@ -6,17 +6,25 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
+const clientPath = path.resolve(__dirname, 'client/components')
+const bundlePath = path.resolve(__dirname, 'dist')
+
 
 const config = {
-  entry: './static/js/index.jsx',
+  entry: path.join(clientPath, '/index.jsx'),
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: bundlePath,
     filename: 'bundle.js'
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, 
+        test: /\.(js|jsx|json)$/,
+        include: [
+          clientPath,
+          path.resolve(__dirname, 'static/data'),
+          'node_modules'
+        ],
         use: 'babel-loader'
       },
       {
@@ -27,11 +35,6 @@ const config = {
           use: ['css-loader', 'less-loader']
         })
       }
-    ],
-    loaders: [
-      { test: /\.js$/, loader: 'babel', query: { presets: ['es2015','react'], exclude: /node_modules/ } },
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]
   },
   devServer: {
@@ -60,7 +63,11 @@ const config = {
       filename: 'index.html',
       template: 'public/index.html'
     })
-  ]
-};
+  ],
+  resolve: {
+    modules: ['node_modules', clientPath],
+    extensions: ['.js', '.json', '.jsx', '.scss', '.css']
+  }
+}
 
 module.exports = config;
