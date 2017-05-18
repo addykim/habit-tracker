@@ -79,7 +79,6 @@ class Square extends Component {
       <span
           className={this.getClass()}>
           {dayDate}
-          {this.state.isSaturday?<br/>:null}
       </span>
     )
   }

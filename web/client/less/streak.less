@@ -1,4 +1,4 @@
-@import "main.less";
+@import "base.less";
 
 @habit-margin: 40px;
 form.habit-form {
@@ -39,7 +39,7 @@ input {
   margin: @square-row-margin;
 }
 
-@square-side-length: 10px;
+@square-side-length: 40px;
 
 @square-header: #5bc0de;
 @square-disabled: #eceeef;
@@ -54,8 +54,10 @@ input {
   width: @square-side-length;
   color: @square-text;
   background-color: @square-blank;
-  padding: @square-side-length;
-  margin: 0 @square-margin 0 @square-margin;
+  display: inline-block;
+  overflow: hidden;
+  /*padding: @square-side-length;*/
+  /*margin: 0 @square-margin 0 @square-margin;*/
   &.header {
     background-color: @square-header;
   }
