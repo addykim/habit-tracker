@@ -1,13 +1,15 @@
+import moment from 'moment'
+
+
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
 
 import Square from './square'
 
+// import * as calenderHeader from '../../../static/data/calHeader.json'
+import calenderHeader from '../../constants/calenderHeader'
+
 import {getTodaysDate} from '../../utils/date'
-
-
-// TODO replace
-const calenderHeader = []
 
 class StreakView extends Component {
   constructor(props) {
@@ -28,9 +30,30 @@ class StreakView extends Component {
     let index = 0
     return (
       <div className="habit-progress center-text">
-        <h3 className="habit-header">{this.state.habitName}</h3>
+        <h3 className="habit-header">
+          {this.state.habitName}
+        </h3>
         <div className="habit-streak-view">
-          
+          {calenderHeader.map((square, i) => {
+            return (
+              <Square
+                key={i}
+                isHeader={true}
+                date={square.date}
+                completed={false}/>
+            )
+          })}
+          <br/>
+          {this.state.squares.map((square, i) => {
+            return (
+             <Square
+                key={i}
+                date={square.date}
+                isHeader={false}
+                isPadding={square.isPadding}
+                completed={square.completed}/>
+            )
+          })}
         </div>
         <div>
           <Button
@@ -58,6 +81,7 @@ class StreakView extends Component {
       }
       // }
     }
+
     let differenceStartToday = Math.floor(Math.abs(moment(squares[0].date).diff(today, 'days')) / 7)
     this.refs.thisweek.markSquareCompleted()
   }

@@ -6,6 +6,8 @@ import Habit from './habits/habit'
 import Login from './user/login'
 //import Register from './user/register'
 
+import '../less/streak.less'
+
 // const Home = () => (
   // <Grid>
     // <Row>

@@ -22,7 +22,6 @@ const config = {
         test: /\.(js|jsx|json)$/,
         include: [
           clientPath,
-          path.resolve(__dirname, 'static/data'),
           'node_modules'
         ],
         use: 'babel-loader'

@@ -1,4 +1,4 @@
-[
+const calenderHeader = [
   {
     "date": "Su",
     "completed": false
@@ -28,3 +28,4 @@
     "completed": false
   }
 ]
+export default calenderHeader

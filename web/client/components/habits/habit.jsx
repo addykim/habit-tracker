@@ -4,10 +4,6 @@ import {ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
 import HabitForm from './form'
 import StreakView from './streak'
 
-import * as calenderHeader from '../../../static/data/calHeader.json'
-// const calenderHeader = []
-
-// import '../less/streak.less'
 
 var dummy_id = 6
 

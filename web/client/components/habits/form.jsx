@@ -94,6 +94,7 @@ class HabitForm extends Component {
     }
     newHabit.streak = padSquares(newHabit.streak, newHabit.startDate)
     this.props.addOnSubmit(newHabit)
+    // TODO have action handle this
     // TODO send to API
 
     // clear form
