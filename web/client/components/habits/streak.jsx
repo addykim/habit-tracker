@@ -1,5 +1,6 @@
 import moment from 'moment'
 
+import {isUndefined} from 'lodash'
 
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
@@ -9,7 +10,7 @@ import Square from './square'
 // import * as calenderHeader from '../../../static/data/calHeader.json'
 import calenderHeader from '../../constants/calenderHeader'
 
-import {getTodaysDate} from '../../utils/date'
+import {getTodaysDate, isToday} from '../../utils/date'
 
 class StreakView extends Component {
   constructor(props) {
@@ -20,14 +21,11 @@ class StreakView extends Component {
       startDate: this.props.startDate,
       goalStreak: this.props.goalStreak
     }
+    this.markTodayCompleted = this.markTodayCompleted.bind(this)
   }
   componentWillMount() {}
   componentDidMount() {}
   render() {
-    let days = this.state.squares
-    let weekView = []
-    let week = 0, weekWithToday = 0
-    let index = 0
     return (
       <div className="habit-progress center-text">
         <h3 className="habit-header">
@@ -48,6 +46,7 @@ class StreakView extends Component {
             return (
              <Square
                 key={i}
+                ref={isToday(square.date) ? 'today' : square.date}
                 date={square.date}
                 isHeader={false}
                 isPadding={square.isPadding}
@@ -59,7 +58,7 @@ class StreakView extends Component {
           <Button
               className="center-block completed-button"
               type="button"
-              onClick={this.markTodayCompleted.bind(this)}>
+              onClick={this.markTodayCompleted}>
               Completed
           </Button>
         </div>
@@ -67,23 +66,7 @@ class StreakView extends Component {
     )
   }
   markTodayCompleted() {
-    let today = getTodaysDate()
-    let squares = this.state.squares
-    let index = 0
-    let notFound = true
-    while (notFound) {
-      // if (!squares[index].isPadding) {
-      if (squares[index].date === today) {
-        notFound = false
-        squares[index].completed = true
-      } else {
-        index++
-      }
-      // }
-    }
-
-    let differenceStartToday = Math.floor(Math.abs(moment(squares[0].date).diff(today, 'days')) / 7)
-    this.refs.thisweek.markSquareCompleted()
+    this.refs.today.markCompleted()
   }
 }
 
