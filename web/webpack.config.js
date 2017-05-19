@@ -6,12 +6,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
 const extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
 
-const clientPath = path.resolve(__dirname, 'client/components')
+const clientPath = path.resolve(__dirname, 'client')
 const bundlePath = path.resolve(__dirname, 'dist')
 
 
 const config = {
-  entry: path.join(clientPath, '/index.jsx'),
+  entry: path.join(clientPath, 'components/index.jsx'),
   output: {
     path: bundlePath,
     filename: 'bundle.js'

@@ -4,6 +4,7 @@ import {ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
 import HabitForm from './form'
 import StreakView from './streak'
 
+import {getAllUserHabits} from '../../actions/habit'
 
 var dummy_id = 6
 
@@ -17,11 +18,12 @@ class Habit extends Component {
   }
   componentWillMount(){}
   componentDidMount() {
-    fetch('http://localhost:8080/api/user/3/habits')
+    // TODO change hardcoded value
+    getAllUserHabits(3)
       .then((response) => response.json())
       .then((responseJson) => {
-        this.setState({habits: responseJson})
-      })
+          this.setState({habits: responseJson})
+        })
       .catch((error) => {
         console.error(error);
       });
