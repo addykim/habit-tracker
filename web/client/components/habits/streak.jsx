@@ -1,13 +1,9 @@
-import moment from 'moment'
-
 import {isUndefined} from 'lodash'
-
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
 
 import Square from './square'
 
-// import * as calenderHeader from '../../../static/data/calHeader.json'
 import calenderHeader from '../../constants/calenderHeader'
 
 import {getTodaysDate, isToday} from '../../utils/date'

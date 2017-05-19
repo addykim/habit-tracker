@@ -1,8 +1,5 @@
 import React, {Component} from 'react'
 
-// TODO remove moment
-import moment from 'moment'
-
 import {addDays, formatDate, subtractDays, isSaturday} from '../../utils/date'
 // add padding before and after streak for A E S T H E T I C calendar view
 // squares should be an array of square objects
@@ -13,16 +10,13 @@ function padSquares(squares, startDate) {
   let startDayOfWeek = startDate.day()
   if (startDayOfWeek !== 0) {
     let paddingDate = subtractDays(startDate, startDayOfWeek)
-    // let paddingDate = moment(startDate).subtract(startDayOfWeek, 'days')
     for (let i = 0; i < startDayOfWeek; i++) {
       paddingBefore.push({
-        // date: paddingDate.format(DATE_FORMAT),
         date: formatDate(paddingDate),
         completed: false,
         isPadding: true
       })
       paddingDate = addDays(paddingDate, 1)
-      // paddingDate = moment(paddingDate).add(1, 'days')
     }
     days = paddingBefore.concat(squares)
   } else {
@@ -34,16 +28,13 @@ function padSquares(squares, startDate) {
   if (endDayOfWeek < 6) {
     let paddingAfter = []
     let paddingDate = addDays(endDate, 1)
-    // let paddingDate = moment(endDate).add(1, 'days')
     for (let i = endDayOfWeek; i < 6; i++) {
       paddingAfter.push({
-        // date: paddingDate.format(DATE_FORMAT),
         date: formatDate(paddingDate),
         completed: false,
         isPadding: true
       })
       paddingDate = addDays(paddingDate, 1)
-      // paddingDate = moment(paddingDate).add(1, 'days')
     }
     days = days.concat(paddingAfter)
   }
@@ -72,15 +63,9 @@ class Square extends Component {
     if (this.state.isHeader) {
       dayDate = this.state.date
     } else {
-      let DATE_FORMAT = 'YYYY-MM-DD'
-      dayDate = moment(this.state.date).format(DATE_FORMAT).substring(this.state.date.length-2)
+      dayDate = formatDate(this.state.date).substring(this.state.date.length-2)
     }
-    return (
-      <span
-          className={this.getClass()}>
-          {dayDate}
-      </span>
-    )
+    return <span className={this.getClass()}>{dayDate}</span>
   }
   markCompleted() {
     this.setState({completed: true})
@@ -94,8 +79,9 @@ class Square extends Component {
     else if (this.state.isPadding)
       classNames.push('disabled')
     // TODO today
-    // if (this.props.index == moment().date())
+    // if (isToday(this.props.index)) {
       // classNames.push('today')
+    // }
     return classNames.join(' ')
   }
 }

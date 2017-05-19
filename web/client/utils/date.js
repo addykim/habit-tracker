@@ -17,7 +17,7 @@ export function isSaturday(date) {
 }
 
 export function formatDate(date) {
-  return date.format(DATE_FORMAT)
+  return moment(date).format(DATE_FORMAT)
 }
 
 export function getTodaysDate() {
@@ -28,5 +28,5 @@ export function isToday(date) {
   if (date.length === 2) {
     return false
   }
-  return moment(date).format(DATE_FORMAT) === getTodaysDate()
+  return formatDate(date) === getTodaysDate()
 }
