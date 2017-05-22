@@ -1,6 +1,13 @@
 import React, {Component} from 'react'
 import {Button} from 'react-bootstrap'
 
+import {addDays, formatDate, getTodaysDate} from '../../utils/date'
+import {padSquares} from '../../utils/squares'
+
+import {addHabit} from '../../actions/habit'
+
+var dummy_id = 6
+
 const HABIT_FORM_DEFAULTS = {
   habitName: '',
   goalStreak: '',
@@ -69,10 +76,10 @@ class HabitForm extends Component {
     }
   }
   handleSubmit(event) {
+    event.preventDefault()
     let habitName = this.state.habitName
     let goalStreak = this.state.goalStreak
     let todaysDate = getTodaysDate()
-    event.preventDefault()
     // TODO change id
     dummy_id++
     let newHabit = {
@@ -81,15 +88,15 @@ class HabitForm extends Component {
       goalStreak: goalStreak,
       startDate: todaysDate,
       streak: []
-    };
-    let date = moment(todaysDate).format(DATE_FORMAT);
+    }
+    let date = getTodaysDate()
     for (let index = 0; index < goalStreak; index++) {
       let square = {
         completed: false,
-        date: date,
+        date: formatDate(date),
         isPadding: false
       }
-      date = moment(date).add(1, 'days').format(DATE_FORMAT)
+      date = addDays(date, 1)
       newHabit.streak.push(square)
     }
     newHabit.streak = padSquares(newHabit.streak, newHabit.startDate)

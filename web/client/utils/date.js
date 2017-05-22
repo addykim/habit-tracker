@@ -4,7 +4,7 @@ export const DATE_FORMAT = 'YYYY-MM-DD'
 
 export function addDays(date, numDays) {
   // TODO check
-  return moment(date).add(days, 'days')
+  return moment(date).add(numDays, 'days')
 }
 
 export function subtractDays(date, numDays) {
@@ -18,6 +18,14 @@ export function isSaturday(date) {
 
 export function formatDate(date) {
   return moment(date).format(DATE_FORMAT)
+}
+
+export function getDay(date) {
+  return moment(date).day()
+}
+
+export function getMomentDate(date) {
+  return moment(date)
 }
 
 export function getTodaysDate() {

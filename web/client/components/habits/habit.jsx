@@ -6,8 +6,6 @@ import StreakView from './streak'
 
 import {getAllUserHabits} from '../../actions/habit'
 
-var dummy_id = 6
-
 class Habit extends Component {
   constructor(props) {
     super()
@@ -20,7 +18,6 @@ class Habit extends Component {
   componentDidMount() {
     // TODO change hardcoded value
     getAllUserHabits(3)
-      .then((response) => response.json())
       .then((responseJson) => {
           this.setState({habits: responseJson})
         })
