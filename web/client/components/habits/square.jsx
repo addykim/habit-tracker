@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
+import {isNull} from 'lodash'
 
-import {addDays, formatDate, subtractDays, isSaturday} from '../../utils/date'
+import {addDays, formatDate, getMonth, isSaturday, subtractDays} from '../../utils/date'
 
 import {padSquares} from '../../utils/squares'
 
@@ -21,13 +22,28 @@ class Square extends Component {
     this.markCompleted = this.markCompleted.bind(this)
   }
   render() {
-    let dayDate;
+    let dayDate, month
     if (this.state.isHeader) {
       dayDate = this.state.date
     } else {
       dayDate = formatDate(this.state.date).substring(this.state.date.length-2)
     }
-    return <span className={this.getClass()}>{dayDate}</span>
+    if (dayDate === '01' || this.props.index === 0) {
+      month = getMonth(this.state.date)
+      // month = 'Jun'
+    } else {
+      month = null
+    }
+    return (
+      <span>
+        <span className={this.getClass()}>
+          {month}
+          {!isNull(month) && <br/>}
+          {dayDate}
+        </span>
+        {this.props.index !== 0 && this.props.index % 7 === 6 && <br/>}
+      </span>
+    )
   }
   markCompleted() {
     this.setState({completed: true})

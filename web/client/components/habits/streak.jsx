@@ -42,6 +42,7 @@ class StreakView extends Component {
             return (
              <Square
                 key={i}
+                index={i}
                 ref={isToday(square.date) ? 'today' : square.date}
                 date={square.date}
                 isHeader={false}

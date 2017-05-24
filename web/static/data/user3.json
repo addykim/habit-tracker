@@ -31,11 +31,6 @@
         "isPadding": true
       },
       {
-        "date": "2017-04-31",
-        "completed": false,
-        "isPadding": true
-      },
-      {
         "date": "2017-05-01",
         "completed": false,
         "isPadding": false
@@ -152,6 +147,10 @@
         "date": "2017-05-29",
         "completed": false,
         "isPadding": true
+      },{
+        "date": "2017-05-30",
+        "completed": false,
+        "isPadding": true
       }
     ]
   },
@@ -159,35 +158,30 @@
     "id": 6,
     "name": "Get a hot bod as a fluffy kitty",
     "goalStreak": 21,
-    "startDate": "2017-04-29",
+    "startDate": "2017-05-29",
     "streak": [
       {
-        "date": "2017-04-26",
+        "date": "2017-05-26",
         "completed": false,
         "isPadding": true
       },
       {
-        "date": "2017-04-27",
+        "date": "2017-05-27",
         "completed": false,
         "isPadding": true
       },
       {
-        "date": "2017-04-28",
+        "date": "2017-05-28",
         "completed": false,
         "isPadding": true
       },
       {
-        "date": "2017-04-29",
+        "date": "2017-05-29",
         "completed": false,
         "isPadding": false
       },
       {
-        "date": "2017-04-30",
-        "completed": false,
-        "isPadding": false
-      },
-      {
-        "date": "2017-04-31",
+        "date": "2017-05-30",
         "completed": false,
         "isPadding": false
       },
@@ -277,6 +271,10 @@
         "isPadding": true
       },{
         "date": "2017-05-22",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-05-23",
         "completed": false,
         "isPadding": true
       }
