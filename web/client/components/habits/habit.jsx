@@ -14,7 +14,6 @@ class Habit extends Component {
     }
     this.addNewHabit = this.addNewHabit.bind(this)
   }
-  componentWillMount(){}
   componentDidMount() {
     // this.props.onGetHabits()
     // TODO change hardcoded value
@@ -41,7 +40,6 @@ class Habit extends Component {
           goalStreak={habit.goalStreak}/>)
       })
     }
-
     return (
       <div className="center-block">
         <HabitForm addOnSubmit={this.addNewHabit}/>

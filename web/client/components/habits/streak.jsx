@@ -19,14 +19,10 @@ class StreakView extends Component {
     }
     this.markTodayCompleted = this.markTodayCompleted.bind(this)
   }
-  componentWillMount() {}
-  componentDidMount() {}
   render() {
     return (
       <div className="habit-progress center-text">
-        <h3 className="habit-header">
-          {this.state.habitName}
-        </h3>
+        <h3 className="habit-header">{this.state.habitName}</h3>
         <div className="habit-streak-view">
           {calenderHeader.map((square, i) => {
             return (
@@ -50,8 +46,6 @@ class StreakView extends Component {
                 completed={square.completed}/>
             )
           })}
-        </div>
-        <div>
           <Button
               className="center-block completed-button"
               type="button"
@@ -63,7 +57,10 @@ class StreakView extends Component {
     )
   }
   markTodayCompleted() {
-    this.refs.today.markCompleted()
+    // In case the button was not adequately disabled
+    if (!isUndefined(this.refs.today)) {
+      this.refs.today.markCompleted()
+    }
   }
 }
 
