@@ -16,6 +16,7 @@ class Habit extends Component {
   }
   componentWillMount(){}
   componentDidMount() {
+    // this.props.onGetHabits()
     // TODO change hardcoded value
     getAllUserHabits(3)
       .then((responseJson) => {
@@ -56,5 +57,9 @@ class Habit extends Component {
     })
   }
 }
+
+// function mapDispatchToProps(dispatch) {
+//   return { onGetHabits: () => getAllUserHabits() }
+// }
 
 export default Habit
