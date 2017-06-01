@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
+import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
 
 import HabitForm from './form'
 import StreakView from './streak'
@@ -13,6 +13,7 @@ class Habit extends Component {
       habits: []
     }
     this.addNewHabit = this.addNewHabit.bind(this)
+    this.deleteHabit = this.deleteHabit.bind(this)
   }
   componentDidMount() {
     // this.props.onGetHabits()
@@ -30,14 +31,22 @@ class Habit extends Component {
     if (this.state.habits.length === 0) {
       mapping = (<p>No habits created</p>)
     } else {
-      mapping = this.state.habits.map(habit => {
+      mapping = this.state.habits.map((habit, index) => {
         return (
-        <StreakView
-          key={habit.id}
-          name={habit.name}
-          streak={habit.streak}
-          startDate={habit.startDate}
-          goalStreak={habit.goalStreak}/>)
+          <div key={habit.id}>
+            <StreakView
+              index={index}
+              name={habit.name}
+              streak={habit.streak}
+              startDate={habit.startDate}
+              goalStreak={habit.goalStreak}/>
+            <Button
+                type="button"
+                onClick={this.deleteHabit}>
+              Delete
+            </Button>
+          </div>
+        )
       })
     }
     return (
@@ -45,11 +54,20 @@ class Habit extends Component {
         <HabitForm addOnSubmit={this.addNewHabit}/>
         {mapping}
       </div>
-    );
+    )
   }
   addNewHabit(newHabit) {
     let habits = this.state.habits
     habits.push(newHabit)
+    this.setState({
+      habits: habits
+    })
+  }
+  deleteHabit() {
+    // TODO does not actually do anything
+    console.log('Delete habit')
+    let habits = this.state.habits
+    habits.splice()
     this.setState({
       habits: habits
     })
