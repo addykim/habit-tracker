@@ -3,152 +3,152 @@
     "id": 5,
     "name": "Become a fluffy kitty",
     "goalStreak": 17,
-    "startDate": "2017-05-01",
+    "startDate": "2017-06-01",
     "streak": [
       {
-        "date": "2017-04-26",
-        "completed": false,
-        "isPadding": true
-      },
-      {
-        "date": "2017-04-27",
-        "completed": false,
-        "isPadding": true
-      },
-      {
-        "date": "2017-04-28",
-        "completed": false,
-        "isPadding": true
-      },
-      {
-        "date": "2017-04-29",
-        "completed": false,
-        "isPadding": true
-      },
-      {
-        "date": "2017-04-30",
-        "completed": false,
-        "isPadding": true
-      },
-      {
-        "date": "2017-05-01",
-        "completed": false,
-        "isPadding": false
-      },
-      {
-        "date": "2017-05-02",
-        "completed": false
-      },
-      {
-        "date": "2017-05-03",
-        "completed": false
-      },
-      {
-        "date": "2017-05-04",
-        "completed": false
-      },
-      {
-        "date": "2017-05-05",
-        "completed": false
-      },
-      {
-        "date": "2017-05-06",
-        "completed": false
-      },
-      {
-        "date": "2017-05-07",
-        "completed": false
-      },
-      {
-        "date": "2017-05-08",
-        "completed": false
-      },
-      {
-        "date": "2017-05-09",
-        "completed": false
-      },
-      {
-        "date": "2017-05-10",
-        "completed": true
-      },
-      {
-        "date": "2017-05-11",
-        "completed": true
-      },
-      {
-        "date": "2017-05-12",
-        "completed": true
-      },
-      {
-        "date": "2017-05-13",
-        "completed": true
-      },
-      {
-        "date": "2017-05-14",
-        "completed": false
-      },
-      {
-        "date": "2017-05-15",
-        "completed": false
-      },
-      {
-        "date": "2017-05-16",
-        "completed": false
-      },
-      {
-        "date": "2017-05-17",
-        "completed": false
-      },
-      {
-        "date": "2017-05-18",
-        "completed": false
-      },
-      {
-        "date": "2017-05-19",
-        "completed": false
-      },
-      {
-        "date": "2017-05-20",
-        "completed": false
-      },
-      {
-        "date": "2017-05-21",
-        "completed": false
-      },
-      {
-        "date": "2017-05-22",
-        "completed": false
-      },
-      {
-        "date": "2017-05-23",
-        "completed": false
-      },
-      {
-        "date": "2017-05-24",
-        "completed": false,
-        "isPadding": false
-      },{
-        "date": "2017-05-25",
-        "completed": false,
-        "isPadding": true
-      },{
         "date": "2017-05-26",
         "completed": false,
         "isPadding": true
-      },{
+      },
+      {
         "date": "2017-05-27",
         "completed": false,
         "isPadding": true
-      },{
+      },
+      {
         "date": "2017-05-28",
         "completed": false,
         "isPadding": true
-      },{
+      },
+      {
         "date": "2017-05-29",
         "completed": false,
         "isPadding": true
-      },{
+      },
+      {
         "date": "2017-05-30",
+        "completed": false,
+        "isPadding": true
+      },
+      {
+        "date": "2017-06-01",
+        "completed": false,
+        "isPadding": false
+      },
+      {
+        "date": "2017-06-02",
+        "completed": false
+      },
+      {
+        "date": "2017-06-03",
+        "completed": false
+      },
+      {
+        "date": "2017-06-04",
+        "completed": false
+      },
+      {
+        "date": "2017-06-05",
+        "completed": false
+      },
+      {
+        "date": "2017-06-06",
+        "completed": false
+      },
+      {
+        "date": "2017-06-07",
+        "completed": false
+      },
+      {
+        "date": "2017-06-08",
+        "completed": false
+      },
+      {
+        "date": "2017-06-09",
+        "completed": false
+      },
+      {
+        "date": "2017-06-10",
+        "completed": true
+      },
+      {
+        "date": "2017-06-11",
+        "completed": true
+      },
+      {
+        "date": "2017-06-12",
+        "completed": true
+      },
+      {
+        "date": "2017-06-13",
+        "completed": true
+      },
+      {
+        "date": "2017-06-14",
+        "completed": false
+      },
+      {
+        "date": "2017-06-15",
+        "completed": false
+      },
+      {
+        "date": "2017-06-16",
+        "completed": false
+      },
+      {
+        "date": "2017-06-17",
+        "completed": false
+      },
+      {
+        "date": "2017-06-18",
+        "completed": false
+      },
+      {
+        "date": "2017-06-19",
+        "completed": false
+      },
+      {
+        "date": "2017-06-20",
+        "completed": false
+      },
+      {
+        "date": "2017-06-21",
+        "completed": false
+      },
+      {
+        "date": "2017-06-22",
+        "completed": false
+      },
+      {
+        "date": "2017-06-23",
+        "completed": false
+      },
+      {
+        "date": "2017-06-24",
+        "completed": false,
+        "isPadding": false
+      },{
+        "date": "2017-06-25",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-06-26",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-06-27",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-06-28",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-06-29",
+        "completed": false,
+        "isPadding": true
+      },{
+        "date": "2017-06-30",
         "completed": false,
         "isPadding": true
       }
@@ -186,95 +186,95 @@
         "isPadding": false
       },
       {
-        "date": "2017-05-01",
+        "date": "2017-06-01",
         "completed": false
       },
       {
-        "date": "2017-05-02",
+        "date": "2017-06-02",
         "completed": true
       },
       {
-        "date": "2017-05-03",
+        "date": "2017-06-03",
         "completed": false
       },
       {
-        "date": "2017-05-04",
+        "date": "2017-06-04",
         "completed": false
       },
       {
-        "date": "2017-05-05",
+        "date": "2017-06-05",
         "completed": false
       },
       {
-        "date": "2017-05-06",
+        "date": "2017-06-06",
         "completed": true
       },
       {
-        "date": "2017-05-07",
+        "date": "2017-06-07",
         "completed": false
       },
       {
-        "date": "2017-05-08",
+        "date": "2017-06-08",
         "completed": false
       },
       {
-        "date": "2017-05-09",
+        "date": "2017-06-09",
         "completed": true
       },
       {
-        "date": "2017-05-10",
+        "date": "2017-06-10",
         "completed": true
       },
       {
-        "date": "2017-05-11",
+        "date": "2017-06-11",
         "completed": false
       },
       {
-        "date": "2017-05-12",
+        "date": "2017-06-12",
         "completed": true
       },
       {
-        "date": "2017-05-13",
+        "date": "2017-06-13",
         "completed": true
       },
       {
-        "date": "2017-05-14",
+        "date": "2017-06-14",
         "completed": false
       },
       {
-        "date": "2017-05-15",
+        "date": "2017-06-15",
         "completed": false
       },
       {
-        "date": "2017-05-16",
+        "date": "2017-06-16",
         "completed": false
       },
       {
-        "date": "2017-05-17",
+        "date": "2017-06-17",
         "completed": false
       },
       {
-        "date": "2017-05-18",
+        "date": "2017-06-18",
         "completed": false,
         "isPadding": true
       },{
-        "date": "2017-05-19",
+        "date": "2017-06-19",
         "completed": false,
         "isPadding": true
       },{
-        "date": "2017-05-20",
+        "date": "2017-06-20",
         "completed": false,
         "isPadding": true
       },{
-        "date": "2017-05-21",
+        "date": "2017-06-21",
         "completed": false,
         "isPadding": true
       },{
-        "date": "2017-05-22",
+        "date": "2017-06-22",
         "completed": false,
         "isPadding": true
       },{
-        "date": "2017-05-23",
+        "date": "2017-06-23",
         "completed": false,
         "isPadding": true
       }
