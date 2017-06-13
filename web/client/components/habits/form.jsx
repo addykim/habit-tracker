@@ -51,7 +51,7 @@ class HabitForm extends Component {
             disabled={!this.state.validInput}>
             Submit</Button>
       </form>
-      );
+      )
   }
   handleChange(event) {
     const target = event.target

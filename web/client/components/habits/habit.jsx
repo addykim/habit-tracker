@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Button, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap'
+import {Button, ControlLabel, Form, FormControl, FormGroup, Modal} from 'react-bootstrap'
 
 import HabitForm from './form'
 import StreakView from './streak'
@@ -10,7 +10,8 @@ class Habit extends Component {
   constructor(props) {
     super()
     this.state = {
-      habits: []
+      habits: [],
+      show: false
     }
     this.addNewHabit = this.addNewHabit.bind(this)
     this.deleteHabit = this.deleteHabit.bind(this)
@@ -28,12 +29,12 @@ class Habit extends Component {
   }
   render() {
     let mapping;
-    if (this.state.habits.length === 0) {
-      mapping = (<p>No habits created</p>)
-    } else {
+    // if (this.state.habits.length === 0) {
+      // mapping = (<p>No habits created</p>)
+    // } else {
       mapping = this.state.habits.map((habit, index) => {
         return (
-          <div key={habit.id}>
+          <div className="inline-block vertical-top" key={habit.id}>
             <StreakView
               index={index}
               name={habit.name}
@@ -48,11 +49,25 @@ class Habit extends Component {
           </div>
         )
       })
-    }
+    // }
     return (
       <div className="center-block">
-        <HabitForm addOnSubmit={this.addNewHabit}/>
         {mapping}
+        <Button onClick={() => {console.log('show modal');this.setState({ show: true})}}>+</Button>
+        <Modal
+            show={this.state.show}
+            onHide={this.hideModal.bind(this)}
+            dialogClassName="custom-modal">
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-lg">Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <HabitForm addOnSubmit={this.addNewHabit}/>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.hideModal.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     )
   }
@@ -71,6 +86,10 @@ class Habit extends Component {
     this.setState({
       habits: habits
     })
+  }
+  hideModal() {
+    console.log('hide modal')
+    this.setState({show: false});
   }
 }
 

@@ -47,10 +47,10 @@ class StreakView extends Component {
             )
           })}
           <Button
-              className="center-block completed-button"
+              className="completed-button"
               type="button"
               onClick={this.markTodayCompleted}>
-              Completed
+            Completed
           </Button>
         </div>
       </div>
