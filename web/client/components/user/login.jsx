@@ -6,12 +6,13 @@ export default class Login extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      user: {name: 'Megan'}
     }
   }
   // TODO validate
   render() {
-    if (this.state.visible) {
+    if (!this.state.user) {
       return (
         <Form inline>
           <FormGroup controlId="formInlineName">
@@ -30,6 +31,6 @@ export default class Login extends Component {
         </Form>
         )
     }
-    return <span><a href="">Logged in as {this.state.username}</a></span>
+    return <span>Logged in as {this.state.user.name}</span>
   }
 }

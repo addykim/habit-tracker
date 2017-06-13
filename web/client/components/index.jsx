@@ -22,6 +22,7 @@ const App = () => (
       <ul
           className="nav-bar">
       </ul>
+      <Login/>
       <Route exact path="/" component={Habit}/>
     </div>
   </Router>
