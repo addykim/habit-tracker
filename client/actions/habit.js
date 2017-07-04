@@ -1,6 +1,6 @@
 import ActionTypes from '../constants/actionTypes'
 
-const url = 'http://localhost:8080/api/'
+const url = 'http://localhost:5000/api/'
 
 function getHabitRequestedAction() {
   return { type: ActionTypes.getHabitRequested }

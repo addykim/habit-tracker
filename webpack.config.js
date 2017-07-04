@@ -44,7 +44,7 @@ const config = {
     port: 3000,
     proxy: {
       '^/api/*': {
-        target: 'http://localhost:8080/api/',
+        target: 'http://localhost:5000/api',
         secure: false
       }
     }

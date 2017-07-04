@@ -31,4 +31,4 @@ const App = () => (
 //<Route exact path="/register" component={Register}/>
 
 
-ReactDOM.render(<App/>, document.getElementById('content'));
+ReactDOM.render(<App/>, document.getElementById('content'))
