@@ -80,10 +80,7 @@ class HabitForm extends Component {
     let habitName = this.state.habitName
     let goalStreak = this.state.goalStreak
     let todaysDate = getTodaysDate()
-    // TODO change id
-    dummy_id++
     let newHabit = {
-      id: dummy_id,
       name: habitName,
       goalStreak: goalStreak,
       startDate: todaysDate,
@@ -101,8 +98,7 @@ class HabitForm extends Component {
     }
     newHabit.streak = padSquares(newHabit.streak, newHabit.startDate)
     this.props.addOnSubmit(newHabit)
-    // TODO have action handle this
-    // TODO send to API
+    addHabit(newHabit)
 
     // clear form
     this.setState(HABIT_FORM_DEFAULTS)
